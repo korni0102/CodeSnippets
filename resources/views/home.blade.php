@@ -57,7 +57,6 @@
                 }
             })
             .then(response => {
-                //document.getElementById('items-container').innerHTML = ;
                 $('#showCode .modal-body').html(response.data.html);
             })
             .catch(error => {

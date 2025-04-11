@@ -1,5 +1,5 @@
 ﻿id;description;row;row_categories;crispdm
-1;Importovanie knižnice Pandas;import pandas as pd;1;3
+1;trans.code.description.1;import pandas as pd;1;3
 2;Načítanie datasetu;"golf = pd.read_csv('golf_nominal.csv', sep=';')";2;3
 3;Zobrazenie datasetu;golf;3;2
 4;Zobrazenie prvých riadkov datasetu;golf.head();3;2

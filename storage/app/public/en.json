@@ -84,5 +84,6 @@
     "trans.Copy to clipboard": "Copy to clipboard",
     "trans.Show code": "Show code",
     "trans.Connected codes": "Connected codes",
-    "trans.Restore": "Restore"
+    "trans.Restore": "Restore",
+    "trans.code.description.1": "Import Pandas library"
 }

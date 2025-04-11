@@ -83,5 +83,7 @@
     "trans.Search in desc and code": "Hľadať v popise a kóde",
     "trans.Copy to clipboard": "Kopírovať do schránky",
     "trans.Show code": "Zobraziť kód",
-    "trans.Connected codes": "Prepojené kódy"
+    "trans.Connected codes": "Prepojené kódy",
+    "trans.Restore": "Obnoviť",
+    "trans.code.description.1": "Importovanie knižnice Pandas"
 }
