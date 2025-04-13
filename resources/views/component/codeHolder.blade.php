@@ -3,8 +3,9 @@
     <div class="d-flex justify-content-between align-items-start mb-3">
         <p class="w-85 mb-0">{{ __(Snippet::TRANS_STRING_DESCRIPTION . $snippet->id) }}</p>
         <span class="badge bg-primary w-15 text-end">
-            {{ Snippet::getCrispdm($snippet->crispdm) }}
+            {{ __("trans." . Snippet::getCrispdm($snippet->crispdm)) }}
         </span>
+
     </div>
 
     <div class="code-holder mb-4 position-relative">

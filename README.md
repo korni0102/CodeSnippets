@@ -1,116 +1,138 @@
-# Laravel Application
+# CodeSnippets – Laravel Application
 
-This is a Laravel-based web application designed to use MySQL for the database and provides support for features such as queue processing, secure API management with Sanctum, and robust development tools such as PHPUnit for automated testing.
+**CodeSnippets** is a Laravel-based web application designed to manage, search, and organize Python code snippets. It categorizes snippets according to CRISP-DM phases and supports multilingual functionality (English and Slovak). The application offers role-based access control for guests, registered users, and administrators.
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
+- [Features](#features)
 - [System Requirements](#system-requirements)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Running the Application](#running-the-application)
-- [Features](#features)
+- [Translation System](#translation-system)
 - [Development Tools](#development-tools)
 - [Testing](#testing)
-- [Dependencies](#dependencies)
 
 ---
 
-## System Requirements
+## 🚀 Features
 
-You need the following tools installed on your system to run this project:
+- **Code Snippet Management**: Create, edit, and archive Python code snippets.
+- **Categorization**: Organize snippets based on CRISP-DM phases.
+- **Multilingual Support**: Automatic translation of snippets and metadata between English and Slovak.
+- **Role-Based Access Control**:
+    - *Guest*: View and search snippets.
+    - *Registered User*: Create and manage personal snippets.
+    - *Administrator*: Manage all snippets and approve user-submitted categories.
+- **Search and Filtering**: Full-text search and filtering by category and CRISP-DM phase.
+- **User-Friendly Interface**: Responsive design with intuitive navigation.
 
-- PHP 8.1 or higher
+---
+
+## 🛠️ System Requirements
+
+Ensure the following tools are installed on your system:
+
+- PHP >= 8.1
 - Composer
-- Node.js (with `npm`)
+- Node.js and npm
 - MySQL
 
 ---
 
-## Installation
+## 📦 Installation
 
-1. Clone the repository:
+1. **Clone the repository**:
 
    ```bash
-   git clone <repo-url>
-   cd <repo-directory>
+   git clone https://github.com/korni0102/CodeSnippets.git
+   cd CodeSnippets
    ```
 
-2. Install PHP dependencies using Composer:
+2. **Install PHP dependencies**:
 
    ```bash
    composer install
    ```
 
-3. Copy `.env.example` to `.env` and configure your environment variables:
+
+3. **Copy `.env` file and generate application key**:
 
    ```bash
    cp .env.example .env
-   ```
-
-4. Generate the application key:
-
-   ```bash
    php artisan key:generate
    ```
 
-5. Set up the database:
+4. **Configure environment variables**:
 
-    - Create a new MySQL database.
-    - Update the `.env` file with your database credentials.
-
----
-
-## Configuration
-
-- **Database**: Update your `.env` file to include the correct MySQL database credentials.
-- **Queue**: The application is set to use a `sync` queue driver by default, which processes jobs synchronously. This can be adjusted in the `.env` file (`QUEUE_CONNECTION`).
+   Update the `.env` file with your database credentials and other necessary configurations.
 
 ---
 
-## Running the Application
+## ⚙️ Configuration
 
-1. Migrate the database:
+- **Database**: Set up your MySQL database and update the `.env` file accordingly.
+- **Queue**: The application uses the `sync` driver by default. You can change this in the `.env` file (`QUEUE_CONNECTION`).
+- **Sanctum**: Laravel Sanctum is used for API authentication.
+
+---
+
+## ▶️ Running the Application
+
+1. **Run migrations**:
 
    ```bash
    php artisan migrate
    ```
 
-2. (Optional) Seed the database with test data:
+2. **Seed the database**:
 
    ```bash
    php artisan db:seed
    ```
 
-3. Run the development server:
+   This will:
+
+    - Create an admin user.
+    - Import code snippets from a structured CSV file using `SnippetsSeeder`.
+
+3. **Start the development server**:
 
    ```bash
    php artisan serve
    ```
 
----
-
-## Features
-
-- **Secure Authentication**: Powered by Laravel Sanctum.
-- **Database Management**: Uses MySQL for data persistence.
-- **API Development**: Offers robust API development standards with Sanctum for token-based authentication.
-- **Queue Management**: Queue system (currently `sync`) for deferred task handling.
-- **Scheduling**: Integrated support for task scheduling using the `dragonmantank/cron-expression`.
-- **Testing**: Pre-configured with PHPUnit for automated testing.
+   Access the application at `http://localhost:8000`.
 
 ---
 
-## Development Tools
+## 🌐 Translation System
 
-The following tools and packages are used to enhance development:
-
-- **PHPUnit**: For testing your PHP code.
-- **Mockery/Mockery**: Provides mocking and test double functionalities.
-- **FakerPHP/Faker**: Generates fake data for development.
-- **Laravel Sail**: Offers a lightweight development environment for Docker.
-- **Laravel Tinker**: Provides a REPL for direct interaction with your Laravel code.
-- **Laravel IDE Helper**: Offers code completion for IDEs like PhpStorm.
+- **Automatic Translation**: Utilizes [open-google-translator](https://github.com/vidya-hub/open-google-translator) for translating snippets and metadata.
+- **Caching**: Translations are cached in JSON files to minimize API calls and improve performance.
+- **Fallback Mechanism**: If the translation API fails, the original text is displayed with a notification.
 
 ---
+
+## 🧰 Development Tools
+
+- **Laravel Framework**: Backend framework.
+- **Blade Templates**: Templating engine for views.
+- **Bootstrap 5**: Frontend styling.
+- **Select2**: Enhanced select boxes for filtering.
+- **Laravel Sanctum**: API authentication.
+- **PHPUnit**: Testing framework.
+
+---
+
+## ✅ Testing
+
+Run the test suite using:
+
+```bash
+php artisan test
+```
+
+

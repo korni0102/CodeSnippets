@@ -24,7 +24,6 @@
 
     @php($categories = [])
     <div class="row mt-5">
-        <!-- Tartalom középen -->
         <div class="col-7 mx-auto" id="content-holder">
             @foreach($snippets as $categoryId => $categorySnippets)
                 @php($categories[] = $categoryId)
@@ -54,7 +53,6 @@
         </div>
     </div>
 
-    {{-- 🎯 FONTOS: Itt legyen statikusan beillesztve a Modal --}}
     @include('component.codeModal')
 
     <style>

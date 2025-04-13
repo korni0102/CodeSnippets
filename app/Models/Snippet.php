@@ -44,12 +44,12 @@ class Snippet extends Model
     public const TRANS_STRING_DESCRIPTION = 'trans.code.description.';
 
     private const CISPDM = [
-        1 => 'Understanding the problem',
-        2 => 'Understanding the data',
+        1 => 'Business Understanding',
+        2 => 'Data Understanding',
         3 => 'Data preparation',
         4 => 'Modeling',
         5 => 'Evaluation',
-        6 => 'Using the results',
+        6 => 'Deployment',
     ];
 
     protected $fillable = [
