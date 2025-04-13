@@ -1,12 +1,8 @@
-.nav-profile{
-    min-width: 100px;
-}
-
-.nav-profile a:after, .nav-languages a:after{
+.nav-profile a:after, .nav-languages a:after {
     display: none;
 }
 
-.nav-profile >.dropdown-menu.show{
+.nav-profile > .dropdown-menu.show {
     min-width: 100px;
 }
 
@@ -14,30 +10,38 @@
     min-width: 55px;
 }
 
-.nav-languages >.dropdown-menu.show{
+.nav-languages > .dropdown-menu.show {
     min-width: 40px;
 }
 
-.code-holder{
+.code-holder {
     position: relative;
     margin: 0 auto;
     width: 100%;
     min-height: 75px;
 }
 
-.code-holder .code-holder__code{
+.code-holder .code-holder__code {
     padding: 10px;
 }
 
-.code-holder .code-holder__copy{
+.code-holder .code-holder__copy {
     position: absolute;
     top: 10px;
     right: 10px;
     color: #1a202c;
 }
 
-.side-bar{
+.side-bar {
     min-height: 200px;
     height: 100%;
     top: 20px;
+}
+
+.snippet-holder {
+    min-height: 130px;
+}
+
+.snippet-holder > * {
+    min-height: 130px;
 }

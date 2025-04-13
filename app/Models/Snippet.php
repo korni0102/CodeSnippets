@@ -41,7 +41,7 @@ class Snippet extends Model
 {
     use HasFactory;
 
-    public const TRANS_STRING_DESCRIPTION = 'trans.snippet.description.';
+    public const TRANS_STRING_DESCRIPTION = 'trans.code.description.';
 
     private const CISPDM = [
         1 => 'Understanding the problem',

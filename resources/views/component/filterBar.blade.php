@@ -2,7 +2,7 @@
 @use(App\Models\Snippet)
 @use(App\Models\CodeCategory)
 
-<nav class="navbar my-5 bg-light">
+<nav class="navbar my-5 py-4 px-4 shadow rounded" style="background-color: #C8BEB7;">
     <div class="container-fluid pe-0 me-0">
         <span class="navbar-brand mb-0 h1">{{ __("trans.Filters") }}</span>
 
@@ -41,6 +41,8 @@
 </nav>
 
 <script>
+    const isHomeBlade = true;
+
     $(document).ready(function () {
         $('#snippetCategory').select2({
             placeholder: '{{ __("trans.Select snippet categories") }}',
@@ -69,6 +71,7 @@
                 },
                 success: function (data) {
                     renderSnippets(data);
+                    Prism.highlightAll();
                 }
             });
         });
@@ -78,47 +81,66 @@
             const sidebarSection = document.getElementById('side-bar');
             let categories = [];
 
-            // Clean existing content
             snippetsSection.innerHTML = '';
             sidebarSection.innerHTML = `
-            <p><a class="link-secondary" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">${"{{ __('trans.Scroll to the top') }}"}</a></p>`;
+        <p><a class="link-secondary" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">{{ __('trans.Scroll to the top') }}</a></p>
+    `;
 
-            // Loop through and render snippets
             Object.values(data).forEach(category => {
                 const {category_id, category_name, snippets} = category;
                 categories.push(category_name);
 
-                // Add category and snippets
-                snippetsSection.innerHTML += `
-                <h3 id="${category_name}">${category_name}</h3>
-                ${snippets.map(snippet => `
-                    <div class="d-flex justify-content-between">
-                        <p class="w-75">${snippet.description}</p>
-                        <p class="w-25 text-end">${snippet.crispdm}</p>
-                    </div>
-                    ${renderCodeHolderSnippet(snippet)}
-                `).join('')}
-            `;
+                snippetsSection.innerHTML += `<h3 id="${category_name}">${category_name}</h3>`;
+                snippets.forEach(snippet => {
+                    snippetsSection.innerHTML += renderCodeHolderSnippet(snippet);
+                });
             });
 
-            // Render sidebar
             categories.forEach(category => {
                 sidebarSection.innerHTML += `
-                <p><a href="#${category}" class="link-secondary" onclick="changeLinkColor($(this))">${category}</a></p>
-            `;
+            <p><a href="#${category}" class="link-secondary" onclick="changeLinkColor($(this))">${category}</a></p>
+        `;
             });
         }
 
+
         function renderCodeHolderSnippet(snippet) {
-            return `<div class="code-holder mb-4 bg-secondary-subtle">
-                        <div class="code-holder__code">
-                            ${snippet.row}
-                            </div>
-                            <a class="code-holder__copy" onclick="copyToClipboard('${snippet.row}', $(this))">
-                            <i class="bi bi-clipboard"></i>
-                        </a>
-                    </div>`
+            return `
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <p class="w-85 mb-0">${snippet.description}</p>
+                <span class="badge bg-primary w-15 text-end">
+                    ${snippet.crispdm}
+                </span>
+            </div>
+
+            <div class="code-holder mb-4 position-relative">
+                <div class="bg-dark text-light rounded snippet-holder">
+                    <pre class="bg-dark language-python"><code class="language-python"> ${escapeHtml(snippet.row)}</code></pre>
+                </div>
+                <button class="btn btn-sm btn-outline-light position-absolute bottom-0 end-0 m-2 copy-btn mb-4"
+                        data-snippet="${snippet.row}"
+                        onclick="copyToClipboard($(this).data('snippet'), $(this))"
+                        title="{{ __("trans.Copy to clipboard") }}">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+
+                <button class="btn btn-sm btn-outline-light position-absolute bottom-0 m-2 copy-btn mb-4"
+                        data-bs-toggle="modal" data-bs-target="#showCode"
+                        onclick="fetchCode('${snippet.id}')"
+                        title="{{ __("trans.Show code") }}"
+                        style="right: 45px"
+                        >
+                    <i class="bi bi-eye"></i>
+                </button>
+            </div>`;
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
         }
     });
-
 </script>
+

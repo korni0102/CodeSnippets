@@ -16,7 +16,7 @@ class DashboardController extends Controller
      */
     public function index(): View
     {
-        $snippets = Snippet::all()->groupBy('category_id')->sortBy('category_id');
+        $snippets = Snippet::all()->groupBy('category_id')->sortKeys();
 
         return view('home', compact('snippets'));
     }
@@ -74,14 +74,14 @@ class DashboardController extends Controller
                 'category_name' => __(RowCategory::TRANS_STRING . $categoryId),
                 'snippets'      => $group->map(function ($snippet) {
                     return [
-                        'description' => $snippet->description,
+                        'id'          => $snippet->id,
+                        'description' => __($snippet->description),
                         'crispdm'     => Snippet::getCrispdm($snippet->crispdm),
                         'row'         => $snippet->row
                     ];
                 }),
             ];
         });
-
         return response()->json($result);
     }
 

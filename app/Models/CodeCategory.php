@@ -31,9 +31,9 @@ class CodeCategory extends Model
     use HasFactory;
 
     const TYPES = [
-        1 => 'Neural Network',
-        2 => 'Natural Language Processing',
-        3 => 'Machine Learning',
+        1 => 'Machine Learning',
+        2 => 'Neural Network',
+        3 => 'Natural Language Processing',
     ];
 
     protected $fillable = [

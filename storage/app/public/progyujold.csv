@@ -1,0 +1,214 @@
+﻿id;description;row;row_categories;crispdm
+1;trans.code.description.1;import pandas as pd;1;3
+2;Načítanie datasetu;"golf = pd.read_csv('golf_nominal.csv', sep=';')";2;3
+3;Zobrazenie datasetu;golf;3;2
+4;Zobrazenie prvých riadkov datasetu;golf.head();3;2
+5;Zakódovanie kategórií;"golf = pd.get_dummies(golf, columns = [""Outlook""], drop_first = False)";4;4
+6;Zobrazenie prvých riadkov po zakódovaní;golf.head();3;2
+7;Zakódovanie ďalších kategórií;"golf = pd.get_dummies(golf, columns = [""Temperature"", ""Humidity"", ""Windy""], drop_first = False)";4;4
+8;Zobrazenie prvých riadkov po ďalšom zakódovaní;golf.head();3;2
+9;Importovanie knižnice train_test_split;from sklearn.model_selection import train_test_split;1;3
+10;Oddelenie vstupných atribútov (X) od cieľovej premennej (y);"X = golf[golf.columns.difference(['Play'])]
+y = golf.Play";5;3
+11;Rozdelenie údajov na tréningovú a testovaciu množinu;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2);6;3
+12;Zobrazenie tréningových údajov;X_train;3;2
+13;Zobrazenie testovacích údajov;X_test;3;2
+14;Importovanie knižnice DecisionTreeClassifier;from sklearn.tree import DecisionTreeClassifier;1;4
+15;Trénovanie rozhodovacieho stromu;clf = DecisionTreeClassifier();7;4
+16;Natrénovanie rozhodovacieho stromu na tréningových údajoch;clf = clf.fit(X_train,y_train);8;4
+17;Predikcia hodnôt na testovacích údajoch;y_pred = clf.predict(X_test);9;4
+18;Importovanie knižnice metrics;from sklearn import metrics;1;5
+19;Vyhodnotenie presnosti modelu;"print(""Presnosť:"",metrics.accuracy_score(y_test, y_pred))";10;5
+20;Získanie zoznamu atribútov;stlpce = golf[golf.columns.difference(['Play'])].columns.to_list();5;3
+21;Importovanie knižnice matplotlib;import matplotlib.pyplot as plt;1;6
+22;Importovanie knižnice tree;from sklearn import tree;1;6
+23;Vykreslenie rozhodovacieho stromu;"fig = plt.figure(figsize=(20,6))
+_ = tree.plot_tree(clf, feature_names = stlpce, class_names=['no','yes'], filled=True)";11;6
+24;Zobrazenie extrahovaných atribútov;stlpce;3;3
+25;Opätovné vykreslenie rozhodovacieho stromu;"fig = plt.figure(figsize=(20,6))
+_ = tree.plot_tree(clf, feature_names = stlpce, class_names=['yes','no'], filled=True)";11;6
+26;Načítanie datasetu;diabetes = pd.read_csv('diabetes_inbalanced.csv', index_col=0);2;3
+27;Zobrazenie datasetu;diabetes;3;2
+28;Zobrazenie základných štatistických hodnôt datasetu;diabetes.describe();12;2
+29;Importovanie knižnice Counter;from collections import Counter;1;3
+30;Počítanie frekvencie hodnôt atribútu;Counter(diabetes.Outcome);12;2
+31;Výber všetkých atribútov datasetu okrem cieľovej premennej, definovanie cieľovej premennej;"X = diabetes[diabetes.columns.difference(['Outcome'])]
+y = diabetes['Outcome']
+y=y.astype('int')";5;3
+32;Vytvorenie modelu rozhodovacieho stromu s kritériom gini;clf = DecisionTreeClassifier(criterion='gini');7;4
+33;Importovanie knižnice confusion_matrix;from sklearn.metrics import confusion_matrix;1;5
+34;Vytvorenie konfúznej matice na analýzu správnych a nesprávnych predpovedí modelu;confusion_matrix(y_test, y_pred, labels=[1,0]);10;5
+35;Načítanie datasetu;titanic = pd.read_csv('titanic.csv');2;3
+36;Zobrazenie datasetu;titanic;3;2
+37;Zakódovanie pohlavia;titanic['Sex'] = titanic['Sex'].replace({'male': 0, 'female': 1});4;3
+38;Rozdelenie údajov na tréningovú a testovaciu množinu;"X = titanic[titanic.columns.difference(['Survived'])]
+y = titanic['Survived']
+y=y.astype('int')";6;3
+39;Zobrazenie maximálnej hĺbky natrénovaného rozhodovacieho stromu;clf.get_depth();10;5
+40;Zobrazenie celkového počtu listov v natrénovanom rozhodovacom strome;clf.get_n_leaves();10;5
+41;Vytvorenie modelu rozhodovacieho stromu s kritériom entropy;clf = DecisionTreeClassifier(criterion='entropy');7;4
+42;Trénovanie modelov a analýza presnosti v závislosti od hĺbky rozhodovacieho stromu;"max_depth = []
+acc_gini = []
+acc_entropy = []
+for i in range(1,30):
+    dtree = DecisionTreeClassifier(criterion='gini', max_depth=i)
+    dtree.fit(X_train, y_train)
+    pred = dtree.predict(X_test)
+    acc_gini.append(metrics.accuracy_score(y_test, pred))
+ ####
+    dtree = DecisionTreeClassifier(criterion='entropy', max_depth=i)
+    dtree.fit(X_train, y_train)
+    pred = dtree.predict(X_test)
+    acc_entropy.append(metrics.accuracy_score(y_test, pred))
+ ####
+    max_depth.append(i)";10;5
+43;Zobrazenie zoznamu presností rozhodovacieho stromu s kritériom gini;acc_gini;10;5
+44;Zobrazenie zoznamu presností rozhodovacieho stromu s kritériom entropy;acc_entropy;10;5
+45;Importovanie knižnice export_graphviz;from sklearn.tree import export_graphviz;1;6
+46;Importovanie knižnice StringIO;from six import StringIO;1;6
+47;Importovanie knižnice Image;from IPython.display import Image;1;6
+48;Importovanie knižnice pydotplus;import pydotplus;1;6
+49;Vytvorenie DataFrame, ktorý obsahuje presnosti rozhodovacích stromov;d = pandas.DataFrame({'acc_gini':pandas.Series(acc_gini), 'acc_entropy':pandas.Series(acc_entropy), 'max_depth':pandas.Series(max_depth)});10;5
+50;Vykreslenie zmien presnosti rozhodovacích stromov v závislosti od maximálnej hĺbky;"plt.plot('max_depth','acc_gini', data=d, label='gini')
+plt.plot('max_depth','acc_entropy', data=d, label='entropy')
+plt.xlabel('max_depth')
+plt.ylabel('accuracy')
+plt.legend() ";11;6
+51;Trénovanie modelov a analýza presnosti v závislosti od hĺbky rozhodovacieho stromu (gini);"max_depth = []
+acc_test = []
+acc_train = []
+for i in range(1,101):
+    dtree = DecisionTreeClassifier(criterion='gini', max_depth=i)
+    dtree.fit(X_train, y_train)
+
+    pred_train = dtree.predict(X_train)
+    pred_test = dtree.predict(X_test)
+
+    acc_train.append(metrics.accuracy_score(y_train, pred_train))
+    acc_test.append(metrics.accuracy_score(y_test, pred_test))
+ ####
+    max_depth.append(i)";10;5
+52;Vytvorenie pandas DataFrame s presnosťou tréningových a testovacích údajov;data = pandas.DataFrame({'acc_train':pandas.Series(acc_train), 'acc_test':pandas.Series(acc_test), 'max_depth':pandas.Series(max_depth)});10;5
+53;Vykreslenie presnosti tréningových a testovacích údajov;"plt.plot('max_depth','acc_train', data=data, marker='o', label='train')
+plt.plot('max_depth','acc_test', data=data, marker='o', label='test')
+plt.xlabel('max_depth')
+plt.ylabel('accuracy')
+plt.legend() ";11;6
+54;Vytvorenie modelu rozhodovacieho stromu s pevne nastaveným parametrom random_state;clf = DecisionTreeClassifier(random_state=0);7;4
+55;Výpočet cesty prerezávania rozhodovacieho stromu na základe tréningových údajov;path = clf.cost_complexity_pruning_path(X_train, y_train);10;4
+56;Extrahovanie hodnôt ccp_alphas a impurities z cesty prerezávania;ccp_alphas, impurities = path.ccp_alphas, path.impurities;10;4
+57;Vykreslenie grafu zobrazujúceho celkovú nečistotu listov;"fig, ax = plt.subplots()
+ax.plot(ccp_alphas[:-1], impurities[:-1], marker=""o"", drawstyle=""steps-post"")
+ax.set_xlabel(""effective alpha"")
+ax.set_ylabel(""total impurity of leaves"")
+ax.set_title(""Total Impurity vs effective alpha for training set"") ";11;6
+58;Importovanie knižnice NumPy;import numpy as np;1;3
+59;Importovanie knižnice Seaborn;import seaborn as sns;1;6
+60;Zobrazenie prvých 5 riadkov datasetu na rýchly prehľad údajov;titanic.head();3;2
+61;Výpis všetkých parametrov natrénovaného rozhodovacieho stromu;clf.get_params();10;5
+62;Definovanie testovacieho vektora reprezentujúceho jednotlivca s rôznymi atribútmi;"osoba = np.array([10, #age
+                  0, #fare
+                  0, #parent/children
+                  1, #pclass
+                  0, #sex
+                  3]) #siblings/spouses";5;3
+63;Výpis obsahu premennej osoba;osoba;3;3
+64;Zmena tvaru vstupných údajov na dvojrozmerné pole, aby bolo kompatibilné s modelom;osoba = osoba.reshape(1,-1);4;3
+65;Použitie modelu rozhodovacieho stromu na predikciu pre osoba;clf.predict(osoba);9;4
+66;Výpis cesty, ktorou prešiel rozhodovací strom pri predikcii pre osoba;clf.decision_path(osoba).toarray();11;6
+67;Načítanie datasetu Possum;df = pd.read_csv('possum.csv');2;2
+68;Zobrazenie prvých 5 riadkov datasetu na rýchly prehľad údajov;df.head();3;2
+69;Výpis základných informácií o datasete;df.info();12;2
+70;ýber všetkých atribútov datasetu okrem cieľovej premennej (age) a definovanie cieľovej premennej;"X = df[df.columns.difference(['age'])]
+y = df['age']";5;3
+71;Rozdelenie údajov na tréningové a testovacie dáta v pomere 70:30;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3);6;3
+72;Importovanie modelu DecisionTreeRegressor na regresnú predikciu;from sklearn.tree import DecisionTreeRegressor;1;4
+73;Prevod textových hodnôt other a Vic na numerické hodnoty 0 a 1;df['Pop'] = df['Pop'].replace({'other': 0, 'Vic': 1});4;3
+74;Prevod textových hodnôt m a f na numerické hodnoty 0 a 1;df['sex'] = df['sex'].replace({'m': 0, 'f': 1});4;3
+75;Spočítanie výskytu jednotlivých hodnôt v atribúte Pop;Counter(df.Pop);12;3
+76;Spočítanie výskytu jednotlivých hodnôt v atribúte sex;Counter(df.sex);12;3
+77;Odstránenie riadkov s chýbajúcimi hodnotami v datasete;df = df.dropna();4;3
+78;Vytvorenie inštancie modelu DecisionTreeRegressor s predvolenými parametrami;model = DecisionTreeRegressor()#max_depth=3);7;4
+79;Trénovanie modelu pomocou tréningových údajov (X_train, y_train);model.fit(X_train, y_train);8;4
+80;Použitie modelu na predikciu výsledkov pre testovacie dáta (X_test);predictions = model.predict(X_test);9;4
+81;Zobrazenie výstupu modelu pre testovacie údaje;predictions;10;5
+82;Použitie modelu na predikciu pre konkrétny vstupný vektor;model.predict([[0,33,63,28,55,14,65,95,0,4,55,36,93]]);9;4
+83;Importovanie knižnice accuracy_score;from sklearn.metrics import accuracy_score;1;5
+84;Vyhodnotenie presnosti modelu;accuracy_score(y_test, y_pred);10;5
+85;Importovanie knižnice precision_recall_fscore_support;from sklearn.metrics import precision_recall_fscore_support;1;5
+86;Výpočet presnosti, recall, f1-score a support;precision_recall_fscore_support(y_test, y_pred, labels=[1, 0]);10;5
+87;Výpis presnosti, recall, f1-score a support;"p, r, f, s = precision_recall_fscore_support(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
+
+print('acc: ',metrics.accuracy_score(y_test, y_pred))
+print('prec: ',((p[0]+p[1])/2),'(',p[0],' / ',p[1],')')
+print('rec: ',((r[0]+r[1])/2),'(',r[0],' / ',r[1],')')
+print('f1-sc:',((f[0]+f[1])/2))
+
+print(confusion_matrix(y_test, y_pred)) ";10;5
+88;Načítanie datasetu;"df = pd.read_csv('ice_cream_data.csv', sep="";"")";2;3
+89;Oddelenie vstupných atribútov (X) od cieľovej premennej (y);"X = df[df.columns.difference(['Revenue'])]
+y = df['Revenue']";5;3
+90;Vytvorenie modelu rozhodovacieho stromu;regressor = DecisionTreeRegressor();7;4
+91;Natrénovanie rozhodovacieho stromu;regressor.fit(X_train, y_train);8;4
+92;Predikcia hodnôt na testovacích údajoch;y_pred = regressor.predict(X_test);9;4
+93;Vytvorenie DataFrame pre porovnanie výsledkov;d = pd.DataFrame({'Real Values':y_test, 'Predicted Values':y_pred});10;5
+94;Oddelenie vstupných atribútov (X) od cieľovej premennej (y);"X = df.drop(['Revenue'], axis = 1)
+y = df['Revenue']";5;3
+95;Výpočet štvorca rezíduí;d['sqr_res'] = pow((d['Real Values'] - d['Predicted Values']), 2);10;5
+96;Súčet štvorca rezíduí;d['sqr_res'].sum();10;5
+97;Vizualizácia skutočných a predpovedaných hodnôt;"plt.scatter(X_test, y_test, color='red')
+plt.scatter(X_test, y_pred, color='green')
+plt.title('Decision Tree Regression')
+plt.xlabel('Temperature')
+plt.ylabel('Revenue')
+plt.show()";11;6
+98;Výber atribútu Temperature a Revenue;"X = df['Temperature'].values
+y = df['Revenue'].values";5;3
+99;Vytvorenie mriežky pre hladšiu vizualizáciu;"X_grid = np.arange(min(X), max(X), 0.01)
+X_grid = X_grid.reshape((len(X_grid), 1))";11;6
+100;Vizualizácia rozhodovacieho stromu;"plt.plot(X_grid, regressor.predict(X_grid), color='black')
+plt.title('Decision Tree Regression')
+plt.xlabel('Temperature')
+plt.ylabel('Revenue')
+plt.show()";11;6
+101;Vytvorenie vstupného vektora pre vizualizáciu;"vstup = df.drop([""Revenue""], axis=1)";5;3
+102;Vizualizácia rozhodovacieho stromu;"plt.figure(figsize=(40,20))
+plot_tree(regressor, feature_names=vstup.columns.tolist())";11;6
+103;Importovanie knižnice RandomForestClassifier;from sklearn.ensemble import RandomForestClassifier;1;4
+104;Vytvorenie modelu náhodného lesa;rf_model = RandomForestClassifier();7;4
+105;Natrénovanie modelu náhodného lesa;rf_model.fit(X_train, y_train);8;4
+106;Predikcia hodnôt na testovacích údajoch;y_pred = rf_model.predict(X_test);9;4
+107;Získanie parametrov modelu;rf_model.get_params();10;5
+108;Vytvorenie modelu náhodného lesa s 1000 stromami;rf_model = RandomForestClassifier(n_estimators=1000);7;4
+109;Natrénovanie modelu náhodného lesa;rf_model.fit(X_train, y_train);8;4
+110;Predikcia pravdepodobností pre testovacie údaje;rf_model.predict_proba(X_test);9;4
+111;Predikcia logaritmických pravdepodobností;rf_model.predict_log_proba(X_test);9;4
+112;Získanie názvov atribútov;rf_model.feature_names_in_;10;5
+113;Výpočet korelačnej matice;corrMatrix = df.corr();12;2
+114;Vizualizácia korelačnej matice;"sns.heatmap(corrMatrix, annot=True)
+plt.show()";11;6
+115;Načítanie datasetu;df = pd.read_csv('Heart.csv');2;3
+116;Počítanie frekvencie hodnôt atribútu AHD;Counter(df.AHD);12;2
+117;Odstránenie stĺpca 'Unnamed: 0';df = df.drop(columns='Unnamed: 0');4;3
+118;Prevod kategórie ChestPain na číselné hodnoty;"df['ChestPain'] = df['ChestPain'].astype('category')
+df['ChestPain'] = df['ChestPain'].cat.codes";4;3
+119;Prevod kategórie Thal na číselné hodnoty;"df['Thal'] = df['Thal'].astype('category')
+df['Thal'] = df['Thal'].cat.codes";4;3
+120;Prevod kategórie AHD na číselné hodnoty;"df['AHD'] = df['AHD'].astype('category')
+df['AHD'] = df['AHD'].cat.codes";4;3
+121;Kontrola chýbajúcich hodnôt;df.isnull().sum();12;2
+122;Oddelenie vstupných atribútov (X) od cieľovej premennej (y);"X = df.drop(columns = ""AHD"")
+y = df['AHD']";5;3
+123;Rozdelenie údajov na tréningovú a testovaciu množinu;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=21);6;3
+124;Importovanie knižnice StandardScaler;from sklearn.preprocessing import StandardScaler;1;3
+125;Vytvorenie modelu  StandardScaler;scaler = StandardScaler();7;4
+126;Škálovanie tréningových údajov;X_train_scaled = scaler.fit_transform(X_train);4;3
+127;Škálovanie testovacích údajov;X_test_scaled = scaler.transform(X_test);4;3
+128;Zobrazenie škálovaných tréningových údajov;X_train_scaled;3;2
+129;Importovanie knižnice LogisticRegression;from sklearn.linear_model import LogisticRegression;1;4
+130;Vytvorenie a natrénovanie logistického modelu;log_reg = LogisticRegression(random_state=0).fit(X_train_scaled, y_train);7;4
+131;Predikcia hodnôt na tréningových údajoch;log_reg.predict(X_train_scaled);9;4
+132;Vyhodnotenie presnosti modelu na tréningových údajoch;log_reg.score(X_train_scaled, y_train);10;5
+133;Vyhodnotenie presnosti modelu na testovacích údajoch;log_reg.score(X_test_scaled, y_test);10;5
+134;Predikcia pravdepodobností pre testovacie údaje;log_reg.predict_proba(X_test_scaled);9;4

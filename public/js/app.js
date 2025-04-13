@@ -5,7 +5,7 @@ function copyToClipboard(text, element){
         clickedButton.innerHTML = `<i class="bi bi-clipboard-check"></i>`;
         setTimeout(() => {
             clickedButton.innerHTML = `<i class="bi bi-clipboard"></i>`;
-        }, 2000);
+        }, 1000);
     }).catch(err => {
         console.error('Failed to copy text: ', err);
     });

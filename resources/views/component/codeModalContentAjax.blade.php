@@ -8,11 +8,9 @@
                         aria-controls="{{ $code->id }}">
                         <span class="d-flex w-100">
                             <span class="w-25">
-                                {{ __(Code::TRANS_STRING_NAME . $code->id) }}
+                                {{ __('trans.code.used', ['id' => $code->id]) }}
                             </span>
-                            <span class="text-start w-75">
-                                {{ __(Code::TRANS_STRING_DESCRIPTION . $code->id) }}
-                            </span>
+
                         </span>
                 </button>
             </h2>

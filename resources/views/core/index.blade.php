@@ -33,8 +33,14 @@
 
     <!-- Blade rendering during ajax -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-okaidia.css" rel="stylesheet" />
+
+
 </head>
-<body>
+<body style="background-color: #E3D7C4;">
 
 <!-- Include Navbar -->
 @includeIf('core.navbar')

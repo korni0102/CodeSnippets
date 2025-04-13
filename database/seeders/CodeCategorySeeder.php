@@ -13,10 +13,11 @@ class CodeCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 2; $i++) {
+        for ($i = 1; $i <= 3; $i++) {
             CodeCategory::create([
-                'type' => 1
+                'type' => $i
             ]);
         }
     }
+
 }

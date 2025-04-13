@@ -1,53 +1,51 @@
-﻿id;description;row;row_categories;crispdm
-1;trans.code.description.1;import pandas as pd;1;3
-2;Načítanie datasetu;"golf = pd.read_csv('golf_nominal.csv', sep=';')";2;3
-3;Zobrazenie datasetu;golf;3;2
-4;Zobrazenie prvých riadkov datasetu;golf.head();3;2
-5;Zakódovanie kategórií;"golf = pd.get_dummies(golf, columns = [""Outlook""], drop_first = False)";4;4
-6;Zobrazenie prvých riadkov po zakódovaní;golf.head();3;2
-7;Zakódovanie ďalších kategórií;"golf = pd.get_dummies(golf, columns = [""Temperature"", ""Humidity"", ""Windy""], drop_first = False)";4;4
-8;Zobrazenie prvých riadkov po ďalšom zakódovaní;golf.head();3;2
-9;Importovanie knižnice train_test_split;from sklearn.model_selection import train_test_split;1;3
-10;Oddelenie vstupných atribútov (X) od cieľovej premennej (y);"X = golf[golf.columns.difference(['Play'])]
-y = golf.Play";5;3
-11;Rozdelenie údajov na tréningovú a testovaciu množinu;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2);6;3
-12;Zobrazenie tréningových údajov;X_train;3;2
-13;Zobrazenie testovacích údajov;X_test;3;2
-14;Importovanie knižnice DecisionTreeClassifier;from sklearn.tree import DecisionTreeClassifier;1;4
-15;Trénovanie rozhodovacieho stromu;clf = DecisionTreeClassifier();7;4
-16;Natrénovanie rozhodovacieho stromu na tréningových údajoch;clf = clf.fit(X_train,y_train);8;4
-17;Predikcia hodnôt na testovacích údajoch;y_pred = clf.predict(X_test);9;4
-18;Importovanie knižnice metrics;from sklearn import metrics;1;5
-19;Vyhodnotenie presnosti modelu;"print(""Presnosť:"",metrics.accuracy_score(y_test, y_pred))";10;5
-20;Získanie zoznamu atribútov;stlpce = golf[golf.columns.difference(['Play'])].columns.to_list();5;3
-21;Importovanie knižnice matplotlib;import matplotlib.pyplot as plt;1;6
-22;Importovanie knižnice tree;from sklearn import tree;1;6
-23;Vykreslenie rozhodovacieho stromu;"fig = plt.figure(figsize=(20,6))
-_ = tree.plot_tree(clf, feature_names = stlpce, class_names=['no','yes'], filled=True)";11;6
-24;Zobrazenie extrahovaných atribútov;stlpce;3;3
-25;Opätovné vykreslenie rozhodovacieho stromu;"fig = plt.figure(figsize=(20,6))
-_ = tree.plot_tree(clf, feature_names = stlpce, class_names=['yes','no'], filled=True)";11;6
-26;Načítanie datasetu;diabetes = pd.read_csv('diabetes_inbalanced.csv', index_col=0);2;3
-27;Zobrazenie datasetu;diabetes;3;2
-28;Zobrazenie základných štatistických hodnôt datasetu;diabetes.describe();12;2
-29;Importovanie knižnice Counter;from collections import Counter;1;3
-30;Počítanie frekvencie hodnôt atribútu;Counter(diabetes.Outcome);12;2
-31;Výber všetkých atribútov datasetu okrem cieľovej premennej, definovanie cieľovej premennej;"X = diabetes[diabetes.columns.difference(['Outcome'])]
+﻿id;description;row;row_categories;crispdm;program_id;code_categories
+1;trans.code.description.1;import pandas as pd;1;1;1,2,3,4,5,6,7,8,9,10,11,16,17,18,20,22,23;1
+2;trans.code.description.2;"golf = pd.read_csv('golf_nominal.csv', sep=';')";2;2;1;1
+3;trans.code.description.3;golf;16;2;1;1
+4;trans.code.description.4;golf.head();16;2;1;1
+5;trans.code.description.5;"golf = pd.get_dummies(golf, columns = [""Outlook""], drop_first = False)";4;3;1;1
+6;trans.code.description.6;"golf = pd.get_dummies(golf, columns = [""Temperature"", ""Humidity"", ""Windy""], drop_first = False)";4;3;1;1
+7;trans.code.description.7;from sklearn.model_selection import train_test_split;1;1;1,2,3,4,5,6,7,8,10,11,16,17,18,19;1
+8;trans.code.description.8;"X = golf[golf.columns.difference(['Play'])]
+y = golf.Play";5;3;1;1
+9;trans.code.description.9;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2);6;3;1,2,4,5,6,7,8,9,16;1
+10;trans.code.description.10;X_train;3;2;1;1
+11;trans.code.description.11;X_test;3;2;1;1
+12;trans.code.description.12;from sklearn.tree import DecisionTreeClassifier;1;1;1,2,3,4,5,6,7,17;1
+13;trans.code.description.13;clf = DecisionTreeClassifier();7;4;1,4,6,17;1
+14;trans.code.description.14;clf = clf.fit(X_train,y_train);8;4;1,2,3,4,6,17;1
+15;trans.code.description.15;y_pred = clf.predict(X_test);9;4;1,2,3,4,6,17;1
+16;trans.code.description.16;from sklearn import metrics;1;1;1,2,3,4,5,6,7,9,11,17;1
+17;trans.code.description.17;"print(""Presnosť:"",metrics.accuracy_score(y_test, y_pred))";10;5;1,2,3,4,9,16,17;1
+18;trans.code.description.18;stlpce = golf[golf.columns.difference(['Play'])].columns.to_list();5;3;1;1
+19;trans.code.description.19;import matplotlib.pyplot as plt;1;1;1,2,8,9,11,12,13,14,15,19;1
+20;trans.code.description.20;from sklearn import tree;1;1;1;1
+21;trans.code.description.21;"fig = plt.figure(figsize=(20,6))
+_ = tree.plot_tree(clf, feature_names = stlpce, class_names=['no','yes'], filled=True)";11;6;1;1
+22;trans.code.description.22;stlpce;5;3;1;1
+23;trans.code.description.23;"fig = plt.figure(figsize=(20,6))
+_ = tree.plot_tree(clf, feature_names = stlpce, class_names=['yes','no'], filled=True)";11;6;1;1
+24;trans.code.description.24;diabetes = pd.read_csv('diabetes_inbalanced.csv', index_col=0);2;2;2,6;1
+25;trans.code.description.25;diabetes;16;2;2;1
+26;trans.code.description.26;diabetes.describe();12;2;2,6;1
+27;trans.code.description.27;from collections import Counter;1;1;2,5,6,10,11,13,17,18,22;1
+28;trans.code.description.28;Counter(diabetes.Outcome);12;2;2,6;1
+29;trans.code.description.29;"X = diabetes[diabetes.columns.difference(['Outcome'])]
 y = diabetes['Outcome']
-y=y.astype('int')";5;3
-32;Vytvorenie modelu rozhodovacieho stromu s kritériom gini;clf = DecisionTreeClassifier(criterion='gini');7;4
-33;Importovanie knižnice confusion_matrix;from sklearn.metrics import confusion_matrix;1;5
-34;Vytvorenie konfúznej matice na analýzu správnych a nesprávnych predpovedí modelu;confusion_matrix(y_test, y_pred, labels=[1,0]);10;5
-35;Načítanie datasetu;titanic = pd.read_csv('titanic.csv');2;3
-36;Zobrazenie datasetu;titanic;3;2
-37;Zakódovanie pohlavia;titanic['Sex'] = titanic['Sex'].replace({'male': 0, 'female': 1});4;3
-38;Rozdelenie údajov na tréningovú a testovaciu množinu;"X = titanic[titanic.columns.difference(['Survived'])]
+y=y.astype('int')";5;3;2,6;1
+30;trans.code.description.30;clf = DecisionTreeClassifier(criterion='gini');7;4;2,3;1
+31;trans.code.description.31;from sklearn.metrics import confusion_matrix;1;1;2,6,11;1
+32;trans.code.description.32;confusion_matrix(y_test, y_pred, labels=[1,0]);10;5;2,6;1
+33;trans.code.description.33;titanic = pd.read_csv('titanic.csv');2;2;3,4,9,16;1
+34;trans.code.description.34;titanic;16;2;3;1
+35;trans.code.description.35;titanic['Sex'] = titanic['Sex'].replace({'male': 0, 'female': 1});4;3;3,4,16;1
+36;trans.code.description.36;"X = titanic[titanic.columns.difference(['Survived'])]
 y = titanic['Survived']
-y=y.astype('int')";6;3
-39;Zobrazenie maximálnej hĺbky natrénovaného rozhodovacieho stromu;clf.get_depth();10;5
-40;Zobrazenie celkového počtu listov v natrénovanom rozhodovacom strome;clf.get_n_leaves();10;5
-41;Vytvorenie modelu rozhodovacieho stromu s kritériom entropy;clf = DecisionTreeClassifier(criterion='entropy');7;4
-42;Trénovanie modelov a analýza presnosti v závislosti od hĺbky rozhodovacieho stromu;"max_depth = []
+y=y.astype('int')";5;3;3,4,9,16;1
+37;trans.code.description.37;clf.get_depth();10;5;3,4;1
+38;trans.code.description.38;clf.get_n_leaves();10;5;3;1
+39;trans.code.description.39;clf = DecisionTreeClassifier(criterion='entropy');7;4;3;1
+40;trans.code.description.40;"max_depth = []
 acc_gini = []
 acc_entropy = []
 for i in range(1,30):
@@ -61,20 +59,20 @@ for i in range(1,30):
     pred = dtree.predict(X_test)
     acc_entropy.append(metrics.accuracy_score(y_test, pred))
  ####
-    max_depth.append(i)";10;5
-43;Zobrazenie zoznamu presností rozhodovacieho stromu s kritériom gini;acc_gini;10;5
-44;Zobrazenie zoznamu presností rozhodovacieho stromu s kritériom entropy;acc_entropy;10;5
-45;Importovanie knižnice export_graphviz;from sklearn.tree import export_graphviz;1;6
-46;Importovanie knižnice StringIO;from six import StringIO;1;6
-47;Importovanie knižnice Image;from IPython.display import Image;1;6
-48;Importovanie knižnice pydotplus;import pydotplus;1;6
-49;Vytvorenie DataFrame, ktorý obsahuje presnosti rozhodovacích stromov;d = pandas.DataFrame({'acc_gini':pandas.Series(acc_gini), 'acc_entropy':pandas.Series(acc_entropy), 'max_depth':pandas.Series(max_depth)});10;5
-50;Vykreslenie zmien presnosti rozhodovacích stromov v závislosti od maximálnej hĺbky;"plt.plot('max_depth','acc_gini', data=d, label='gini')
+    max_depth.append(i)";18;5;3;1
+41;trans.code.description.41;acc_gini;10;5;3;1
+42;trans.code.description.42;acc_entropy;10;5;3;1
+43;trans.code.description.43;from sklearn.tree import export_graphviz;1;1;3;1
+44;trans.code.description.44;from six import StringIO;1;1;3;1
+45;trans.code.description.45;from IPython.display import Image;1;1;3;1
+46;trans.code.description.46;import pydotplus;1;1;3;1
+47;trans.code.description.47;d = pandas.DataFrame({'acc_gini':pandas.Series(acc_gini), 'acc_entropy':pandas.Series(acc_entropy), 'max_depth':pandas.Series(max_depth)});10;5;3;1
+48;trans.code.description.48;"plt.plot('max_depth','acc_gini', data=d, label='gini')
 plt.plot('max_depth','acc_entropy', data=d, label='entropy')
 plt.xlabel('max_depth')
 plt.ylabel('accuracy')
-plt.legend() ";11;6
-51;Trénovanie modelov a analýza presnosti v závislosti od hĺbky rozhodovacieho stromu (gini);"max_depth = []
+plt.legend() ";14;6;3;1
+49;trans.code.description.49;"max_depth = []
 acc_test = []
 acc_train = []
 for i in range(1,101):
@@ -87,57 +85,57 @@ for i in range(1,101):
     acc_train.append(metrics.accuracy_score(y_train, pred_train))
     acc_test.append(metrics.accuracy_score(y_test, pred_test))
  ####
-    max_depth.append(i)";10;5
-52;Vytvorenie pandas DataFrame s presnosťou tréningových a testovacích údajov;data = pandas.DataFrame({'acc_train':pandas.Series(acc_train), 'acc_test':pandas.Series(acc_test), 'max_depth':pandas.Series(max_depth)});10;5
-53;Vykreslenie presnosti tréningových a testovacích údajov;"plt.plot('max_depth','acc_train', data=data, marker='o', label='train')
+    max_depth.append(i)";18;5;3;1
+50;trans.code.description.50;data = pandas.DataFrame({'acc_train':pandas.Series(acc_train), 'acc_test':pandas.Series(acc_test), 'max_depth':pandas.Series(max_depth)});10;5;3;1
+51;trans.code.description.51;"plt.plot('max_depth','acc_train', data=data, marker='o', label='train')
 plt.plot('max_depth','acc_test', data=data, marker='o', label='test')
 plt.xlabel('max_depth')
 plt.ylabel('accuracy')
-plt.legend() ";11;6
-54;Vytvorenie modelu rozhodovacieho stromu s pevne nastaveným parametrom random_state;clf = DecisionTreeClassifier(random_state=0);7;4
-55;Výpočet cesty prerezávania rozhodovacieho stromu na základe tréningových údajov;path = clf.cost_complexity_pruning_path(X_train, y_train);10;4
-56;Extrahovanie hodnôt ccp_alphas a impurities z cesty prerezávania;ccp_alphas, impurities = path.ccp_alphas, path.impurities;10;4
-57;Vykreslenie grafu zobrazujúceho celkovú nečistotu listov;"fig, ax = plt.subplots()
+plt.legend() ";14;6;3;1
+52;trans.code.description.52;clf = DecisionTreeClassifier(random_state=0);7;4;3;1
+53;trans.code.description.53;path = clf.cost_complexity_pruning_path(X_train, y_train);10;4;3;1
+54;trans.code.description.54;ccp_alphas, impurities = path.ccp_alphas, path.impurities;10;4;3;1
+55;trans.code.description.55;"fig, ax = plt.subplots()
 ax.plot(ccp_alphas[:-1], impurities[:-1], marker=""o"", drawstyle=""steps-post"")
 ax.set_xlabel(""effective alpha"")
 ax.set_ylabel(""total impurity of leaves"")
-ax.set_title(""Total Impurity vs effective alpha for training set"") ";11;6
-58;Importovanie knižnice NumPy;import numpy as np;1;3
-59;Importovanie knižnice Seaborn;import seaborn as sns;1;6
-60;Zobrazenie prvých 5 riadkov datasetu na rýchly prehľad údajov;titanic.head();3;2
-61;Výpis všetkých parametrov natrénovaného rozhodovacieho stromu;clf.get_params();10;5
-62;Definovanie testovacieho vektora reprezentujúceho jednotlivca s rôznymi atribútmi;"osoba = np.array([10, #age
+ax.set_title(""Total Impurity vs effective alpha for training set"") ";14;6;3;1
+56;trans.code.description.56;import numpy as np;1;1;4,5,6,8,12,13,14,15,18,19;1
+57;trans.code.description.57;import seaborn as sns;1;1;4,9,11,17,18;1
+58;trans.code.description.58;titanic.head();16;2;4;1
+59;trans.code.description.59;clf.get_params();10;5;4;1
+60;trans.code.description.60;"osoba = np.array([10, #age
                   0, #fare
                   0, #parent/children
                   1, #pclass
                   0, #sex
-                  3]) #siblings/spouses";5;3
-63;Výpis obsahu premennej osoba;osoba;3;3
-64;Zmena tvaru vstupných údajov na dvojrozmerné pole, aby bolo kompatibilné s modelom;osoba = osoba.reshape(1,-1);4;3
-65;Použitie modelu rozhodovacieho stromu na predikciu pre osoba;clf.predict(osoba);9;4
-66;Výpis cesty, ktorou prešiel rozhodovací strom pri predikcii pre osoba;clf.decision_path(osoba).toarray();11;6
-67;Načítanie datasetu Possum;df = pd.read_csv('possum.csv');2;2
-68;Zobrazenie prvých 5 riadkov datasetu na rýchly prehľad údajov;df.head();3;2
-69;Výpis základných informácií o datasete;df.info();12;2
-70;ýber všetkých atribútov datasetu okrem cieľovej premennej (age) a definovanie cieľovej premennej;"X = df[df.columns.difference(['age'])]
-y = df['age']";5;3
-71;Rozdelenie údajov na tréningové a testovacie dáta v pomere 70:30;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3);6;3
-72;Importovanie modelu DecisionTreeRegressor na regresnú predikciu;from sklearn.tree import DecisionTreeRegressor;1;4
-73;Prevod textových hodnôt other a Vic na numerické hodnoty 0 a 1;df['Pop'] = df['Pop'].replace({'other': 0, 'Vic': 1});4;3
-74;Prevod textových hodnôt m a f na numerické hodnoty 0 a 1;df['sex'] = df['sex'].replace({'m': 0, 'f': 1});4;3
-75;Spočítanie výskytu jednotlivých hodnôt v atribúte Pop;Counter(df.Pop);12;3
-76;Spočítanie výskytu jednotlivých hodnôt v atribúte sex;Counter(df.sex);12;3
-77;Odstránenie riadkov s chýbajúcimi hodnotami v datasete;df = df.dropna();4;3
-78;Vytvorenie inštancie modelu DecisionTreeRegressor s predvolenými parametrami;model = DecisionTreeRegressor()#max_depth=3);7;4
-79;Trénovanie modelu pomocou tréningových údajov (X_train, y_train);model.fit(X_train, y_train);8;4
-80;Použitie modelu na predikciu výsledkov pre testovacie dáta (X_test);predictions = model.predict(X_test);9;4
-81;Zobrazenie výstupu modelu pre testovacie údaje;predictions;10;5
-82;Použitie modelu na predikciu pre konkrétny vstupný vektor;model.predict([[0,33,63,28,55,14,65,95,0,4,55,36,93]]);9;4
-83;Importovanie knižnice accuracy_score;from sklearn.metrics import accuracy_score;1;5
-84;Vyhodnotenie presnosti modelu;accuracy_score(y_test, y_pred);10;5
-85;Importovanie knižnice precision_recall_fscore_support;from sklearn.metrics import precision_recall_fscore_support;1;5
-86;Výpočet presnosti, recall, f1-score a support;precision_recall_fscore_support(y_test, y_pred, labels=[1, 0]);10;5
-87;Výpis presnosti, recall, f1-score a support;"p, r, f, s = precision_recall_fscore_support(y_test, y_pred)
+                  3]) #siblings/spouses";5;3;4;1
+61;trans.code.description.61;osoba;3;3;4;1
+62;trans.code.description.62;osoba = osoba.reshape(1,-1);4;3;4;1
+63;trans.code.description.63;clf.predict(osoba);9;4;4;1
+64;trans.code.description.64;clf.decision_path(osoba).toarray();13;6;4;1
+65;trans.code.description.65;df = pd.read_csv('possum.csv');2;2;5;1
+66;trans.code.description.66;df.head();16;2;5;1
+67;trans.code.description.67;df.info();12;2;5;1
+68;trans.code.description.68;"X = df[df.columns.difference(['age'])]
+y = df['age']";5;3;5;1
+69;trans.code.description.69;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3);6;3;5;1
+70;trans.code.description.70;from sklearn.tree import DecisionTreeRegressor;1;1;5,7,8;1
+71;trans.code.description.71;df['Pop'] = df['Pop'].replace({'other': 0, 'Vic': 1});4;3;5;1
+72;trans.code.description.72;df['sex'] = df['sex'].replace({'m': 0, 'f': 1});4;3;5,9;1
+73;trans.code.description.73;Counter(df.Pop);12;3;5;1
+74;trans.code.description.74;Counter(df.sex);12;3;5;1
+75;trans.code.description.75;df = df.dropna();15;3;5,11;1
+76;trans.code.description.76;model = DecisionTreeRegressor()#max_depth=3);7;4;5;1
+77;trans.code.description.77;model.fit(X_train, y_train);8;4;5;1
+78;trans.code.description.78;predictions = model.predict(X_test);9;4;5,16,17;1
+79;trans.code.description.79;predictions;10;5;5,17;1
+80;trans.code.description.80;model.predict([[0,33,63,28,55,14,65,95,0,4,55,36,93]]);9;4;5;1
+81;trans.code.description.81;from sklearn.metrics import accuracy_score;1;1;6,17;1
+82;trans.code.description.82;accuracy_score(y_test, y_pred);10;5;6;1
+83;trans.code.description.83;from sklearn.metrics import precision_recall_fscore_support;1;1;6;1
+84;trans.code.description.84;precision_recall_fscore_support(y_test, y_pred, labels=[1, 0]);10;5;6;1
+85;trans.code.description.85;"p, r, f, s = precision_recall_fscore_support(y_test, y_pred)
 cm = confusion_matrix(y_test, y_pred)
 
 print('acc: ',metrics.accuracy_score(y_test, y_pred))
@@ -145,70 +143,678 @@ print('prec: ',((p[0]+p[1])/2),'(',p[0],' / ',p[1],')')
 print('rec: ',((r[0]+r[1])/2),'(',r[0],' / ',r[1],')')
 print('f1-sc:',((f[0]+f[1])/2))
 
-print(confusion_matrix(y_test, y_pred)) ";10;5
-88;Načítanie datasetu;"df = pd.read_csv('ice_cream_data.csv', sep="";"")";2;3
-89;Oddelenie vstupných atribútov (X) od cieľovej premennej (y);"X = df[df.columns.difference(['Revenue'])]
-y = df['Revenue']";5;3
-90;Vytvorenie modelu rozhodovacieho stromu;regressor = DecisionTreeRegressor();7;4
-91;Natrénovanie rozhodovacieho stromu;regressor.fit(X_train, y_train);8;4
-92;Predikcia hodnôt na testovacích údajoch;y_pred = regressor.predict(X_test);9;4
-93;Vytvorenie DataFrame pre porovnanie výsledkov;d = pd.DataFrame({'Real Values':y_test, 'Predicted Values':y_pred});10;5
-94;Oddelenie vstupných atribútov (X) od cieľovej premennej (y);"X = df.drop(['Revenue'], axis = 1)
-y = df['Revenue']";5;3
-95;Výpočet štvorca rezíduí;d['sqr_res'] = pow((d['Real Values'] - d['Predicted Values']), 2);10;5
-96;Súčet štvorca rezíduí;d['sqr_res'].sum();10;5
-97;Vizualizácia skutočných a predpovedaných hodnôt;"plt.scatter(X_test, y_test, color='red')
+print(confusion_matrix(y_test, y_pred)) ";10;5;6;1
+86;trans.code.description.86;"df = pd.read_csv('ice_cream_data.csv', sep="";"")";2;2;7,8;1
+87;trans.code.description.87;"X = df[df.columns.difference(['Revenue'])]
+y = df['Revenue']";5;3;7;1
+88;trans.code.description.88;regressor = DecisionTreeRegressor();7;4;7,8;1
+89;trans.code.description.89;regressor.fit(X_train, y_train);8;4;7,8;1
+90;trans.code.description.90;y_pred = regressor.predict(X_test);9;4;7,8;1
+91;trans.code.description.91;d = pd.DataFrame({'Real Values':y_test, 'Predicted Values':y_pred});10;5;7,8;1
+92;trans.code.description.92;"X = df.drop(['Revenue'], axis = 1)
+y = df['Revenue']";5;3;8;1
+93;trans.code.description.93;d['sqr_res'] = pow((d['Real Values'] - d['Predicted Values']), 2);10;5;8;1
+94;trans.code.description.94;d['sqr_res'].sum();10;5;8;1
+95;trans.code.description.95;"plt.scatter(X_test, y_test, color='red')
 plt.scatter(X_test, y_pred, color='green')
 plt.title('Decision Tree Regression')
 plt.xlabel('Temperature')
 plt.ylabel('Revenue')
-plt.show()";11;6
-98;Výber atribútu Temperature a Revenue;"X = df['Temperature'].values
-y = df['Revenue'].values";5;3
-99;Vytvorenie mriežky pre hladšiu vizualizáciu;"X_grid = np.arange(min(X), max(X), 0.01)
-X_grid = X_grid.reshape((len(X_grid), 1))";11;6
-100;Vizualizácia rozhodovacieho stromu;"plt.plot(X_grid, regressor.predict(X_grid), color='black')
+plt.show()";14;6;8;1
+96;trans.code.description.96;"X = df['Temperature'].values
+y = df['Revenue'].values";5;3;8;1
+97;trans.code.description.97;"X_grid = np.arange(min(X), max(X), 0.01)
+X_grid = X_grid.reshape((len(X_grid), 1))";14;6;8;1
+98;trans.code.description.98;"plt.plot(X_grid, regressor.predict(X_grid), color='black')
 plt.title('Decision Tree Regression')
 plt.xlabel('Temperature')
 plt.ylabel('Revenue')
-plt.show()";11;6
-101;Vytvorenie vstupného vektora pre vizualizáciu;"vstup = df.drop([""Revenue""], axis=1)";5;3
-102;Vizualizácia rozhodovacieho stromu;"plt.figure(figsize=(40,20))
-plot_tree(regressor, feature_names=vstup.columns.tolist())";11;6
-103;Importovanie knižnice RandomForestClassifier;from sklearn.ensemble import RandomForestClassifier;1;4
-104;Vytvorenie modelu náhodného lesa;rf_model = RandomForestClassifier();7;4
-105;Natrénovanie modelu náhodného lesa;rf_model.fit(X_train, y_train);8;4
-106;Predikcia hodnôt na testovacích údajoch;y_pred = rf_model.predict(X_test);9;4
-107;Získanie parametrov modelu;rf_model.get_params();10;5
-108;Vytvorenie modelu náhodného lesa s 1000 stromami;rf_model = RandomForestClassifier(n_estimators=1000);7;4
-109;Natrénovanie modelu náhodného lesa;rf_model.fit(X_train, y_train);8;4
-110;Predikcia pravdepodobností pre testovacie údaje;rf_model.predict_proba(X_test);9;4
-111;Predikcia logaritmických pravdepodobností;rf_model.predict_log_proba(X_test);9;4
-112;Získanie názvov atribútov;rf_model.feature_names_in_;10;5
-113;Výpočet korelačnej matice;corrMatrix = df.corr();12;2
-114;Vizualizácia korelačnej matice;"sns.heatmap(corrMatrix, annot=True)
-plt.show()";11;6
-115;Načítanie datasetu;df = pd.read_csv('Heart.csv');2;3
-116;Počítanie frekvencie hodnôt atribútu AHD;Counter(df.AHD);12;2
-117;Odstránenie stĺpca 'Unnamed: 0';df = df.drop(columns='Unnamed: 0');4;3
-118;Prevod kategórie ChestPain na číselné hodnoty;"df['ChestPain'] = df['ChestPain'].astype('category')
-df['ChestPain'] = df['ChestPain'].cat.codes";4;3
-119;Prevod kategórie Thal na číselné hodnoty;"df['Thal'] = df['Thal'].astype('category')
-df['Thal'] = df['Thal'].cat.codes";4;3
-120;Prevod kategórie AHD na číselné hodnoty;"df['AHD'] = df['AHD'].astype('category')
-df['AHD'] = df['AHD'].cat.codes";4;3
-121;Kontrola chýbajúcich hodnôt;df.isnull().sum();12;2
-122;Oddelenie vstupných atribútov (X) od cieľovej premennej (y);"X = df.drop(columns = ""AHD"")
-y = df['AHD']";5;3
-123;Rozdelenie údajov na tréningovú a testovaciu množinu;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=21);6;3
-124;Importovanie knižnice StandardScaler;from sklearn.preprocessing import StandardScaler;1;3
-125;Vytvorenie modelu  StandardScaler;scaler = StandardScaler();7;4
-126;Škálovanie tréningových údajov;X_train_scaled = scaler.fit_transform(X_train);4;3
-127;Škálovanie testovacích údajov;X_test_scaled = scaler.transform(X_test);4;3
-128;Zobrazenie škálovaných tréningových údajov;X_train_scaled;3;2
-129;Importovanie knižnice LogisticRegression;from sklearn.linear_model import LogisticRegression;1;4
-130;Vytvorenie a natrénovanie logistického modelu;log_reg = LogisticRegression(random_state=0).fit(X_train_scaled, y_train);7;4
-131;Predikcia hodnôt na tréningových údajoch;log_reg.predict(X_train_scaled);9;4
-132;Vyhodnotenie presnosti modelu na tréningových údajoch;log_reg.score(X_train_scaled, y_train);10;5
-133;Vyhodnotenie presnosti modelu na testovacích údajoch;log_reg.score(X_test_scaled, y_test);10;5
-134;Predikcia pravdepodobností pre testovacie údaje;log_reg.predict_proba(X_test_scaled);9;4
+plt.show()";14;6;8;1
+99;trans.code.description.99;"vstup = df.drop([""Revenue""], axis=1)";5;3;8;1
+100;trans.code.description.100;"plt.figure(figsize=(40,20))
+plot_tree(regressor, feature_names=vstup.columns.tolist())";11;6;8;1
+101;trans.code.description.101;from sklearn.ensemble import RandomForestClassifier;1;1;9,11;1
+102;trans.code.description.102;rf_model = RandomForestClassifier();7;4;9;1
+103;trans.code.description.103;rf_model.fit(X_train, y_train);8;4;9;1
+104;trans.code.description.104;y_pred = rf_model.predict(X_test);9;4;9;1
+105;trans.code.description.105;rf_model.get_params();10;5;9;1
+106;trans.code.description.106;rf_model = RandomForestClassifier(n_estimators=1000);7;4;9;1
+107;trans.code.description.107;rf_model.fit(X_train, y_train);8;4;9;1
+108;trans.code.description.108;rf_model.predict_proba(X_test);9;4;9;1
+109;trans.code.description.109;rf_model.predict_log_proba(X_test);9;4;9;1
+110;trans.code.description.110;rf_model.feature_names_in_;10;5;9;1
+111;trans.code.description.111;corrMatrix = df.corr();12;2;9,11;1
+112;trans.code.description.112;"sns.heatmap(corrMatrix, annot=True)
+plt.show()";14;6;9,11;1
+113;trans.code.description.113;df = pd.read_csv('Heart.csv');2;2;10,11;1
+114;trans.code.description.114;Counter(df.AHD);12;2;10;1
+115;trans.code.description.115;df = df.drop(columns='Unnamed: 0');4;3;10,11;1
+116;trans.code.description.116;"df['ChestPain'] = df['ChestPain'].astype('category')
+df['ChestPain'] = df['ChestPain'].cat.codes";4;3;10,11;1
+117;trans.code.description.117;"df['Thal'] = df['Thal'].astype('category')
+df['Thal'] = df['Thal'].cat.codes";4;3;10,11;1
+118;trans.code.description.118;"df['AHD'] = df['AHD'].astype('category')
+df['AHD'] = df['AHD'].cat.codes";4;3;10,11;1
+119;trans.code.description.119;df.isnull().sum();12;2;10;1
+120;trans.code.description.120;"X = df.drop(columns = ""AHD"")
+y = df['AHD']";5;3;10,11;1
+121;trans.code.description.121;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=21);6;3;10,11;1
+122;trans.code.description.122;from sklearn.preprocessing import StandardScaler;1;1;10,11;1
+123;trans.code.description.123;scaler = StandardScaler();7;4;10,11;1
+124;trans.code.description.124;X_train_scaled = scaler.fit_transform(X_train);4;3;10,11;1
+125;trans.code.description.125;X_test_scaled = scaler.transform(X_test);4;3;10,11;1
+126;trans.code.description.126;X_train_scaled;3;2;10,11;1
+127;trans.code.description.127;from sklearn.linear_model import LogisticRegression;1;1;10,11;1
+128;trans.code.description.128;log_reg = LogisticRegression(random_state=0).fit(X_train_scaled, y_train);7;4;10,11;1
+129;trans.code.description.129;log_reg.predict(X_train_scaled);9;4;10;1
+130;trans.code.description.130;log_reg.score(X_train_scaled, y_train);10;5;10;1
+131;trans.code.description.131;log_reg.score(X_test_scaled, y_test);10;5;10;1
+132;trans.code.description.132;log_reg.predict_proba(X_test_scaled);9;4;10,11;1
+133;trans.code.description.133;import statsmodels.api as sm;1;1;11;1
+134;trans.code.description.134;logit_model=sm.Logit(y, X);7;4;11;1
+135;trans.code.description.135;result=logit_model.fit();8;4;11;1
+136;trans.code.description.136;print(result.summary2());10;5;11;1
+137;trans.code.description.137;"sns.heatmap(corrMatrix, annot=True, fmt="".1f"")
+plt.show() ";14;6;11;1
+138;trans.code.description.138;"plt.figure(figsize=(12, 9))
+sn.heatmap(corrMatrix, annot=True)
+plt.show()";14;6;11;1
+139;trans.code.description.139;y_pred = log_reg.predict(X_test_scaled) ;9;4;11;1
+140;trans.code.description.140;print('Accuracy of logistic regression classifier on test set: {:.2f}'.format(log_reg.score(X_test_scaled, y_test))) ;10;5;11;1
+141;trans.code.description.141;"confusion_matrix = confusion_matrix(y_test, y_pred)
+print(confusion_matrix) ";10;5;11;1
+142;trans.code.description.142;classification_report;10;5;11;1
+143;trans.code.description.143;print(classification_report(y_test, y_pred));10;5;11;1
+144;trans.code.description.144;from sklearn.metrics import roc_auc_score;1;1;11;1
+145;trans.code.description.145;from sklearn.metrics import roc_curve;1;1;11;1
+146;trans.code.description.146;"logit_roc_auc = roc_auc_score(y_test, log_reg.predict(X_test_scaled))
+fpr, tpr, thresholds = roc_curve(y_test, log_reg.predict_proba(X_test_scaled)[:,1])
+plt.figure()
+plt.plot(fpr, tpr, label='Logistic Regression (area = %0.2f)' % logit_roc_auc)
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic')
+plt.legend(loc=""lower right"")
+plt.savefig('Log_ROC')
+plt.show() ";14;6;11;1
+147;trans.code.description.147;"url = ""https://raw.githubusercontent.com/Statology/Python-Guides/main/default.csv""
+data = pd.read_csv(url)";2;2;11;1
+148;trans.code.description.148;"X = data[['student', 'balance', 'income']]
+y = data['default']";5;3;11;1
+149;trans.code.description.149;X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3,random_state=0);6;3;11;1
+150;trans.code.description.150;log_regression = LogisticRegression();7;4;11;1
+151;trans.code.description.151;log_regression.fit(X_train,y_train);8;4;11;1
+152;trans.code.description.152;print(log_regression.predict(X_test));9;4;11;1
+153;trans.code.description.153;rand_forest = RandomForestClassifier(random_state=0);7;4;11;1
+154;trans.code.description.154;rand_forest.fit(X_test, y_test);8;4;11;1
+155;trans.code.description.155;print(rand_forest.predict(X_train));9;4;11;1
+156;trans.code.description.156;"y_pred = log_regression.predict_proba(X_test)[:, 1]
+fpr, tpr, _ = metrics.roc_curve(y_test, y_pred)
+auc = round(metrics.roc_auc_score(y_test, y_pred), 4)
+plt.plot(fpr,tpr,label=""Logistic Regression, AUC=""+str(auc))
+
+y_pred = rand_forest.predict_proba(X_test)[:, 1]
+fpr, tpr, _ = metrics.roc_curve(y_test, y_pred)
+auc = round(metrics.roc_auc_score(y_test, y_pred), 4)
+plt.plot(fpr,tpr,label=""Random Forest, AUC=""+str(auc))
+plt.legend() ";14;6;11;1
+157;trans.code.description.157;"def aktivacna_fn(x):
+    if x>=0:
+        return 1
+    else:
+        return -1 ";19;4;12,13;2
+158;trans.code.description.158;"def neuron(X,W,b):
+ return  aktivacna_fn(np.dot(X,W) + b) ";19;4;12,13;2
+159;trans.code.description.159;from numpy import array;1;1;12;2
+160;trans.code.description.160;"training_data = [
+    (array([121,16.8]), 1),
+    (array([114,15.2]), 1),
+    (array([210,9.4]), -1),
+    (array([195,8.1]), -1),
+] ";2;3;12;2
+161;trans.code.description.161;"W = array([-30,300])
+b = -1230
+eta = 0.01
+print('aktualne vahy: ' , W)
+print('bias: ', b) ";19;4;12;2
+162;trans.code.description.162;"for i in range(0, 4):
+    print('---')
+    x, y = training_data[i]
+    print('trenovacie data: ' , x , ', vysledok: ', y)
+
+    predikcia = neuron(x,W,b)
+    print('predikcia: ',predikcia)
+    chyba = y - predikcia
+    if (chyba != 0):
+        print('potrebne je upravit vahy')
+        W = W + (eta * chyba * x)
+        b = b + (eta * chyba * 1)
+    print('aktualne vahy: ' , W)
+    print('bias: ', b) ";19;4;12;2
+163;trans.code.description.163;"def priamka(x):
+    y = (W[0]*x + b)/(W[1]*(-1))
+    return y ";13;5;12,13;2
+164;trans.code.description.164;from matplotlib.colors import ListedColormap;1;1;12;2
+165;trans.code.description.165;%matplotlib inline;1;1;12,19,23;2
+166;trans.code.description.166;"cm = plt.cm.RdBu
+cm_bright = ListedColormap(['#FF0000', '#0000FF'])
+ax = plt.subplot()
+ax.set_title(""Result"")
+
+for x, expected in training_data:
+    if expected==1:
+        vzor='r'
+    else:
+
+        vzor='b'
+   # print(x[0])
+    ax.scatter(x[0], x[1], color=vzor)
+
+plt.plot([100,300],[priamka(100),priamka(300)])
+plt.show() ";14;5;12;2
+167;trans.code.description.167;"vektor = array ([100, 10])
+neuron(vektor, W, b)";19;4;12;2
+168;trans.code.description.168;"training_data = [
+    (array([3,-2]), -1),
+    (array([3,1]), 1),
+    (array([2,0]), -1),
+] ";2;3;12;2
+169;trans.code.description.169;import random;1;1;12;2
+170;trans.code.description.170;"r1 = random.randint(-100, 100)
+r2 = random.randint(-100, 100)
+W = array([r1,r2])
+b = random.randint(-100, 100)
+eta = 0.5
+print('aktualne vahy: ' , W)
+print('bias: ', b) ";19;4;12;2
+171;trans.code.description.171;"uprava_vahy = True
+epocha_id = 1
+
+while uprava_vahy:
+  print('epocha: ', epocha_id)
+  epocha_id += 1
+  uprava_vahy = False
+  for i in range(0, 3):
+    print('---')
+    x, y = training_data[i]
+    predikcia = neuron(x,W,b)    chyba = y - predikcia    if (chyba != 0):
+        uprava_vahy = True
+        W = W + (eta * chyba * x)
+        b = b + (eta * chyba * 1)
+    print('aktualne vahy: ' , W, ', bias: ', b) ";19;4;12;2
+172;trans.code.description.172;"cm = plt.cm.RdBu
+cm_bright = ListedColormap(['#FF0000', '#0000FF'])
+ax = plt.subplot()
+ax.set_title(""Result"")
+
+for x, expected in training_data:
+    if expected==1:
+        vzor='r'
+    else:
+        vzor='b'    ax.scatter(x[0], x[1], color=vzor)
+
+plt.plot([0,8],[priamka(0),priamka(8)])
+plt.show() ";14;5;12;2
+173;trans.code.description.173;from sklearn import datasets;1;1;13;2
+174;trans.code.description.174;from sklearn.datasets import make_blobs;1;1;13;2
+175;trans.code.description.175;"X, y = datasets.make_blobs(n_samples=100,n_features=2,
+                           centers=2,cluster_std=1,
+                           random_state=3) ";2;3;13,14;2
+176;trans.code.description.176;Counter(y);12;3;13;2
+177;trans.code.description.177;X[:, :][y == 1] ;12;3;13;2
+178;trans.code.description.178;"fig = plt.figure(figsize=(5,5))
+plt.plot(X[:, 0][y == 0], X[:, 1][y == 0], 'r^')
+plt.plot(X[:, 0][y == 1], X[:, 1][y == 1], 'bs')
+plt.xlabel(""feature 1"")
+plt.ylabel(""feature 2"")
+plt.title('Random Classification Data with 2 classes') ";14;5;13;2
+179;trans.code.description.179;X, y = make_blobs(n_samples=400, n_features=3, centers=4, cluster_std=1, random_state=3);2;3;13;2
+180;trans.code.description.180;fig = plt.figure(figsize=(8, 6));14;5;13;2
+181;trans.code.description.181;X.shape;12;3;13;2
+182;trans.code.description.182;vahy = np.zeros((n+1, 2));19;4;13;2
+183;trans.code.description.183;"def perceptron(X, Y, eta, epochs):
+    m, n = X.shape
+    W = np.zeros(n)
+    b = 0
+    for epoch in range(epochs):
+      print('epocha: ',epoch)
+      vykresli_rozdelenie(X,Y,W,b)
+      for i in range(0, m):
+        x = X[i]
+        y = Y[i]
+        predikcia = neuron(x,W,b)
+        chyba = y - predikcia
+        if (chyba != 0):
+          W = W + (eta * chyba * x)
+          b = b + (eta * chyba * 1) ";19;4;13;2
+184;trans.code.description.184;"def vykresli_rozdelenie(X,Y,vahy,bias):
+    print('kresli- vahy:',vahy,' bias:',bias)
+    x1 = [min(X[:,0]), max(X[:,0])]
+    x2 = [(priamka(x1[0],vahy,bias)),(priamka(x1[1],vahy,bias))]
+    print('x1:',x1,'x2:',x2)
+    fig = plt.figure(figsize=(8,5))
+    plt.plot(X[:, 0][y==0], X[:, 1][y==0], ""r^"")
+    plt.plot(X[:, 0][y==1], X[:, 1][y==1], ""bs"")
+    plt.xlabel(""feature 1"")
+    plt.ylabel(""feature 2"")
+    plt.title('Perceptron')
+    plt.plot(x1, x2, 'y-') ";14;5;13;2
+185;trans.code.description.185;perceptron(X, y, 0.5, 10);19;4;13;2
+186;trans.code.description.186;"def sum_squared_errors(y, output_pred):
+    errors = y - output_pred
+    return (errors**2).sum()/2.0";19;4;13,14;2
+187;trans.code.description.187;"mal_byt = np.array([1,2,3,4])
+bol = np.array([1,0,2,5])";2;3;13,14;2
+188;trans.code.description.188;sum_squared_errors(mal_byt, bol);19;4;13,14;2
+189;trans.code.description.189;"def vnutorny_potencial(X, weights):
+    return np.dot(X, weights)";19;4;13,14;2
+190;trans.code.description.190;"def aktivacna_fn(x):
+    return x ";19;4;14;2
+191;trans.code.description.191;m, n = X.shape;1;3;14;2
+192;trans.code.description.192;bias = np.ones((X.shape[0], 1));1;3;14;2
+193;trans.code.description.193;biased_X = np.hstack((bias, X));1;3;14;2
+194;trans.code.description.194;biased_X[:4];3;3;14;2
+195;trans.code.description.195;random_gen = np.random.RandomState(1);1;3;14;2
+196;trans.code.description.196;weights = random_gen.normal(loc = 0.0, scale = 0.01, size = biased_X.shape[1]) ;19;4;14;2
+197;trans.code.description.197;"cost = []
+learn_rate = 0.5
+output_pred = aktivacna_fn(vnutorny_potencial(biased_X, weights)) ";19;4;14;2
+198;trans.code.description.198;output_pred[:4];3;3;14;2
+199;trans.code.description.199;errors = y - output_pred;19;4;14;2
+200;trans.code.description.200;errors[:4];3;3;14;2
+201;trans.code.description.201;weights += (learn_rate * biased_X.T.dot(errors));19;4;14;2
+202;trans.code.description.202;weights;19;4;14;2
+203;trans.code.description.203;"cost_i = (errors**2).sum() /2.0
+cost_i = sum_squared_errors(y,output_pred)";19;5;14;2
+204;trans.code.description.204;"for i in range(20):
+  output_pred = aktivacna_fn(vnutorny_potencial(biased_X, weights))
+  errors = y - output_pred
+  weights += (learn_rate * biased_X.T.dot(errors))
+  cost_i = (errors**2).sum() / 2.0
+  cost.append(cost_i)";19;4;14;2
+205;trans.code.description.205;"class Adaline(object):
+
+    def __init__(self, learn_rate = 0.001, iterations = 10000):
+        self.learn_rate = learn_rate
+        self.iterations = iterations
+
+    def fit(self, X, y, biased_X = False, standardised_X = False):
+        if not standardised_X:
+            X = self._standardise_features(X)
+        if not biased_X:
+            X = self._add_bias(X)
+        self._initialise_weights(X)
+        self.cost = []
+
+        for cycle in range(self.iterations):
+            output_pred = self._activation(self._net_input(X))
+            errors = y - output_pred
+            self.weights += (self.learn_rate * X.T.dot(errors))
+            cost = (errors**2).sum() / 2.0
+            self.cost.append(cost)
+        return self
+
+    def _net_input(self, X):
+        return np.dot(X, self.weights)
+
+    def predict(self, X, biased_X=False):
+        if not biased_X:
+            X = self._add_bias(X)
+        return np.where(self._activation(self._net_input(X)) >= 0.0, 1, 0)
+
+    def _add_bias(self, X):
+        bias = np.ones((X.shape[0], 1))
+        biased_X = np.hstack((bias, X))
+        return biased_X
+
+    def _initialise_weights(self, X):
+        random_gen = np.random.RandomState(1)
+        self.weights = random_gen.normal(loc = 0.0, scale = 0.01, size = X.shape[1])
+        return self
+
+    def _standardise_features(self, X):
+        X_norm = (X - np.mean(X, axis=0)) / np.std(X, axis = 0)
+        return X_norm
+
+    def _activation(self, X):
+        return X ";19;4;14;2
+206;trans.code.description.206;"classifier = Adaline(learn_rate = 0.001, iterations = 100)
+a = classifier.fit(X, y)";19;4;14;2
+207;trans.code.description.207;"plt.plot(range(1, len(classifier.cost) + 1), classifier.cost)
+plt.title(""Adaline: learn-rate 0.001"")
+plt.xlabel('Epochs')
+plt.ylabel('Cost (Sum-of-Squares)')
+plt.show()";14;5;14;2
+208;trans.code.description.208;"vstup_q = np.array([[-4,8]])
+classifier.predict(vstup_q)";9;4;14;2
+209;trans.code.description.209;a.weights;19;4;14;2
+210;trans.code.description.210;"x=np.array([[0,0,1,1],[0,1,0,1]])
+print(x) ";2;3;15;2
+211;trans.code.description.211;"y=np.array([[0,1,1,0]])
+print(y) ";2;3;15;2
+212;trans.code.description.212;"n_x = 2
+n_h = 2
+n_y = 1
+m = x.shape[1]
+lr = 0.2
+np.random.seed(2)
+w1 = np.random.rand(n_h,n_x)   # vahova matica pre skrytu vrstvu
+w2 = np.random.rand(n_y,n_h)   # vahova matica pre vystupnu vrstvu
+losses = [] ";19;4;15;2
+213;trans.code.description.213;"def sigmoid(z):
+    z= 1/(1+np.exp(-z))
+    return z";19;4;15;2
+214;trans.code.description.214;"def forward_prop(w1,w2,x):
+    z1 = np.dot(w1,x)
+    a1 = sigmoid(z1)
+    z2 = np.dot(w2,a1)
+    a2 = sigmoid(z2)
+    return z1,a1,z2,a2";19;4;15;2
+215;trans.code.description.215;"def back_prop(m,w1,w2,z1,a1,z2,a2,y):
+    dz2 = a2-y
+    dw2 = np.dot(dz2,a1.T)/m
+    dz1 = np.dot(w2.T,dz2) * a1*(1-a1)
+    dw1 = np.dot(dz1,x.T)/m
+    dw1 = np.reshape(dw1,w1.shape)
+
+    dw2 = np.reshape(dw2,w2.shape)
+    return dz2,dw2,dz1,dw1";19;4;15;2
+216;trans.code.description.216;"iterations = 100000
+for i in range(iterations):
+    z1,a1,z2,a2 = forward_prop(w1,w2,x)
+    loss = -(1/m)*np.sum(y*np.log(a2)+(1-y)*np.log(1-a2))
+    losses.append(loss)
+
+    da2,dw2,dz1,dw1 = back_prop(m,w1,w2,z1,a1,z2,a2,y)
+    w2 = w2-lr*dw2
+    w1 = w1-lr*dw1";19;4;15;2
+217;trans.code.description.217;"plt.plot(losses)
+plt.xlabel(""EPOCHS"")
+plt.ylabel(""Loss value"")";14;5;15;2
+218;trans.code.description.218;"def predict(w1,w2,input):
+    z1,a1,z2,a2 = forward_prop(w1,w2,test)
+    a2 = np.squeeze(a2)
+    if a2>=0.5:
+        print(""For input"", [i[0] for i in input], ""output is 1"")
+    else:
+        print(""For input"", [i[0] for i in input], ""output is 0"")";19;4;15;2
+219;trans.code.description.219;"test = np.array([[0],[0]])
+predict(w1,w2,test)
+test = np.array([[1],[0]])
+predict(w1,w2,test)
+test = np.array([[0],[1]])
+predict(w1,w2,test)
+test = np.array([[1],[1]])
+predict(w1,w2,test)";10;5;15;2
+220;trans.code.description.220;from tensorflow.keras.layers import Dense;1;1;16,17,18;2
+221;trans.code.description.221;from tensorflow.keras import Sequential;1;1;16,17,18;2
+222;trans.code.description.222;"model = Sequential()
+model.add(Dense(48,input_shape=(6,),activation=""sigmoid""))
+model.add(Dense(6,activation=""sigmoid""))
+model.add(Dense(1))";19;4;16;2
+223;trans.code.description.223;model.summary();13;4;16,17,18;2
+224;trans.code.description.224;"model.compile(optimizer=""adam"", loss=""mse"") ";19;4;16,17;2
+225;trans.code.description.225;model.fit(X_train, y_train, epochs=50);8;4;16;2
+226;trans.code.description.226;preds[:6];10;5;16;2
+227;trans.code.description.227;y_test[:6];10;5;16;2
+228;trans.code.description.228;y_pred = model.predict(X_test).round();9;5;16,17,18;2
+229;trans.code.description.229;data = pd.read_csv('darts.csv');2;2;17,18;2
+230;trans.code.description.230;sns.pairplot(data, hue='competitor');14;5;17,18;2
+231;trans.code.description.231;vyber = data[(data.competitor == 'Michael') | (data.competitor == 'Steve')];2;3;17;2
+232;trans.code.description.232;Counter(vyber.competitor);12;3;17,18;2
+233;trans.code.description.233;vyber['competitor'] = vyber['competitor'].replace({'Steve': 0, 'Michael': 1});4;3;17;2
+234;trans.code.description.234;"X = vyber[vyber.columns.difference(['competitor'])]
+y = vyber['competitor']
+y=y.astype('int')";5;3;17,18;2
+235;trans.code.description.235;X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1);6;3;17,18;2
+236;trans.code.description.236;"model = Sequential()
+model.add(Dense(4,input_shape=(2,),activation=""relu""))
+model.add(Dense(1))";19;4;17;2
+237;trans.code.description.237;model.fit(X_train, y_train, epochs=200);8;4;17,18;2
+238;trans.code.description.238;"multi = data
+multi[""competitor""]=multi[""competitor""].replace({'Steve':0,'Susan':1,'Michael':2,'Kate':3})";4;3;18;2
+239;trans.code.description.239;from tensorflow.keras.utils import to_categorical;1;1;18;2
+240;trans.code.description.240;"X = multi[multi.columns.difference(['competitor'])]
+y = to_categorical(multi['competitor'])";5;3;18;2
+241;trans.code.description.241;"model = Sequential()
+model.add(Dense(4,input_shape=(2,),activation=""relu""))
+model.add(Dense(4,activation=""softmax""))";19;4;18;2
+242;trans.code.description.242;"model.compile(optimizer=""adam"", loss=""binary_crossentropy"")";19;4;18;2
+243;trans.code.description.243;"labels_predict=np.argmax(y_pred,axis=1)
+labels_predict[:6]";10;5;18;2
+244;trans.code.description.244;confusion_matrix(labels_predict, np.argmax(y_test, axis=1));10;5;18;2
+245;trans.code.description.245;"print(""Presnost: "",metrics.accuracy_score(labels_predict, np.argmax(y_test, axis=1)))";10;5;18;2
+246;trans.code.description.246;"data = plt.imread('stop.jfif')
+plt.imshow(data)";22;5;19;2
+247;trans.code.description.247;data.shape;12;3;19;2
+248;trans.code.description.248;"selected_part = data[100:150 , 10:100 , : ]
+plt.imshow(selected_part)";22;5;19;2
+249;trans.code.description.249;"variation_img = data[: , : , 0]
+plt.imshow(variation_img)";22;5;19;2
+250;trans.code.description.250;"selected_part = data[100:103 , 10:16 , : ]
+plt.imshow(selected_part)";22;5;19;2
+251;trans.code.description.251;selected_part;12;3;19;2
+252;trans.code.description.252;"data_gray = np.mean(data, axis=2)
+plt.imshow(data_gray, cmap='gray')
+plt.show()";22;5;19;2
+253;trans.code.description.253;from keras.datasets import fashion_mnist;1;1;19;2
+254;trans.code.description.254;(train_X,train_Y), (test_X,test_Y) = fashion_mnist.load_data();2;2;19;2
+255;trans.code.description.255;from keras.utils import to_categorical;1;1;19;2
+256;trans.code.description.256;"print('Training data shape : ', train_X.shape, train_Y.shape)
+print('Testing data shape : ', test_X.shape, test_Y.shape)";12;3;19;2
+257;trans.code.description.257;"classes = np.unique(train_Y)
+nClasses = len(classes)
+print('Total number of outputs : ', nClasses)
+print('Output classes : ', classes) ";12;3;19;2
+258;trans.code.description.258;"plt.figure(figsize=[5,5])
+plt.subplot(121)
+plt.imshow(train_X[0,:,:], cmap='gray')
+plt.title(""Ground Truth : {}"".format(train_Y[0]))
+plt.subplot(122)
+plt.imshow(test_X[0,:,:], cmap='gray')
+plt.title(""Ground Truth : {}"".format(test_Y[0]))";14;5;19;2
+259;trans.code.description.259;"train_X = train_X.reshape(-1, 28,28, 1)
+test_X = test_X.reshape(-1, 28,28, 1)
+train_X.shape, test_X.shape";4;3;19;2
+260;trans.code.description.260;"train_X = train_X.astype('float32')
+test_X = test_X.astype('float32')
+train_X = train_X / 255.
+test_X = test_X / 255.";4;3;19;2
+261;trans.code.description.261;"train_Y_one_hot = to_categorical(train_Y)
+test_Y_one_hot = to_categorical(test_Y)
+print('Original label:', train_Y[0])
+print('After conversion to one-hot:', train_Y_one_hot[0])";4;3;19;2
+262;trans.code.description.262;train_X,valid_X,train_label,valid_label = train_test_split(train_X, train_Y_one_hot, test_size=0.2, random_state=13);6;3;19;2
+263;trans.code.description.263;train_X.shape,valid_X.shape,train_label.shape,valid_label.shape;12;3;19;2
+264;trans.code.description.264;from keras.models import Sequential, Model;1;1;19;2
+265;trans.code.description.265;from keras.layers import Dense, Dropout, Flatten;1;1;19;2
+266;trans.code.description.266;from keras.layers import Conv2D, MaxPooling2D;1;1;19;2
+267;trans.code.description.267;from keras.layers import LeakyReLU;1;1;19;2
+268;trans.code.description.268;"batch_size = 64
+epochs = 5
+num_classes = 10";19;4;19;2
+269;trans.code.description.269;"fashion_model = Sequential()
+fashion_model.add(Conv2D(32, kernel_size=(3, 3),activation='linear',input_shape=(28,28,1),padding='same'))
+fashion_model.add(LeakyReLU(alpha=0.1))
+fashion_model.add(MaxPooling2D((2, 2),padding='same'))
+fashion_model.add(Conv2D(64, (3, 3), activation='linear',padding='same'))
+fashion_model.add(LeakyReLU(alpha=0.1))
+fashion_model.add(MaxPooling2D(pool_size=(2, 2),padding='same'))
+fashion_model.add(Conv2D(128, (3, 3), activation='linear',padding='same'))
+fashion_model.add(LeakyReLU(alpha=0.1))
+fashion_model.add(MaxPooling2D(pool_size=(2, 2),padding='same'))
+fashion_model.add(Flatten())
+fashion_model.add(Dense(128, activation='linear'))
+fashion_model.add(LeakyReLU(alpha=0.1))
+fashion_model.add(Dense(num_classes, activation='softmax'))";19;4;19;2
+270;trans.code.description.270;fashion_model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(),metrics=['accuracy']);19;4;19;2
+271;trans.code.description.271;fashion_model.summary();13;4;19;2
+272;trans.code.description.272;fashion_train = fashion_model.fit(train_X, train_label, batch_size=batch_size,epochs=epochs,verbose=1,validation_data=(valid_X, valid_label));8;4;19;2
+273;trans.code.description.273;test_eval = fashion_model.evaluate(test_X, test_Y_one_hot, verbose=0);10;5;19;2
+274;trans.code.description.274;"accuracy = fashion_train.history['accuracy']
+loss = fashion_train.history['loss']
+val_loss = fashion_train.history['val_loss']
+epochs = range(len(accuracy))
+plt.plot(epochs, accuracy, 'bo', label='Training accuracy')
+plt.title('Training and validation accuracy')
+plt.legend()
+plt.figure()
+plt.plot(epochs, loss, 'bo', label='Training loss')
+plt.title('Training and validation loss')
+plt.legend()
+plt.show()";14;5;19;2
+275;trans.code.description.275;"fashion_model.save(""fashion_model_dropout.h5"")";13;6;19;2
+276;trans.code.description.276;text_file = open('human_rights.txt', 'r');2;2;20;3
+277;trans.code.description.277;h_rights = text_file.read();2;2;20;3
+278;trans.code.description.278;h_rights;12;2;20;3
+279;trans.code.description.279;"h_rights = h_rights.replace('\n', ' ')
+h_rights = h_rights.replace(""\ufeff"", ' ')
+h_rights = h_rights.replace(',', ' ')
+h_rights = h_rights.replace('.', ' ')";20;3;20;3
+280;trans.code.description.280;len(h_rights);12;3;20;3
+281;trans.code.description.281;len(set(h_rights.split()));12;5;20;3
+282;trans.code.description.282;slova = h_rights.split();20;3;20;3
+283;trans.code.description.283;"max = 0
+for w in slova:
+    if len(w)>max:
+        max = len(w)";12;5;20;3
+284;trans.code.description.284;"tweets = pd.read_csv(""tweets.csv"")";2;2;20;3
+285;trans.code.description.285;tweets.head();12;2;20;3
+286;trans.code.description.286;x = lambda a: a + 100;19;4;20;3
+287;trans.code.description.287;"def tweet_count(row):
+    my_var = row['tweet']
+    return len(my_var.split())";20;4;20;3
+288;trans.code.description.288;tweets['word_count'] = tweets.apply(lambda x: tweet_count(x), axis = 1);12;3;20;3
+289;trans.code.description.289;tweets['char_count'] = tweets['tweet'].str.len();12;3;20;3
+290;trans.code.description.290;tweets['avg_len'] = (tweets['char_count'] - (tweets['word_count'] - 1)) / tweets['word_count'];12;5;20;3
+291;trans.code.description.291;import re;1;1;20,21,22,23;3
+292;trans.code.description.292;"tweet = ""@nltk T awesome! #regex #pandas #python""";2;3;20;3
+293;trans.code.description.293;re.match('abc','abcdefgh');20;4;20;3
+294;trans.code.description.294;re.search('#[A-Za-z0-9]+', tweet);20;4;20;3
+295;trans.code.description.295;[w for w in tweet.split() if re.search('#[A-Za-z0-9]+', w)];20;4;20;3
+296;trans.code.description.296;"sentence1 = ""In the beginning was the Word""
+re.findall(""b.+ing"", sentence1)";20;4;20;3
+297;trans.code.description.297;"sent = 'My email is jkapusta@ukf.sk and my colleague has mdrlik@ukf.sk . This is the bad email: jkkkapusta@u.k'
+[w for w in sent.split("" "") if re.search(""[a-z]+@[a-z.]+.[a-z]{2,3}$"",w)]";20;4;20;3
+298;trans.code.description.298;import nltk;1;1;21,22,23;3
+299;trans.code.description.299;"nltk.download(""wordnet"")";1;1;21;3
+300;trans.code.description.300;from nltk.corpus import wordnet;1;1;21;3
+301;trans.code.description.301;syns = wordnet.synsets('joy');20;4;21;3
+302;trans.code.description.302;"for syn in syns[0].lemmas():
+    print(syn.name())";20;4;21;3
+303;trans.code.description.303;"for syn in syns:
+    for lema in syn.lemmas():
+        print(lema.name())";20;4;21;3
+304;trans.code.description.304;syns[0].definition();20;5;21;3
+305;trans.code.description.305;"slovo = ""joy""
+synonyma = []
+antonyma = []
+
+for syn in wordnet.synsets(slovo):
+    for lema in syn.lemmas():
+        synonyma.append(lema.name())
+        if lema.antonyms():
+            antonyma.append(lema.antonyms()[0].name())
+print('Synonymá:')
+print(set(synonyma))
+print('Antonymá:')
+print(set(antonyma)) ";20;5;21;3
+306;trans.code.description.306;"w1 = wordnet.synset('joy.n.01')
+w2 = wordnet.synset('joyousness.n.01')
+print(w1.wup_similarity(w2))";20;5;21;3
+307;trans.code.description.307;"w1 = wordnet.synset('joy.n.01')
+w2 = wordnet.synset('mouse.n.01')
+print(w1.wup_similarity(w2))";20;5;21;3
+308;trans.code.description.308;import requests;1;1;21,22,23;3
+309;trans.code.description.309;"link = ""https://ukf.sk""
+stranka = requests.get(link)
+stranka.text";21;3;21;3
+310;trans.code.description.310;from lxml import html;1;1;21,22,23;3
+311;trans.code.description.311;tree = html.fromstring(stranka.content);21;3;21,23;3
+312;trans.code.description.312;"nazvy = tree.xpath(""//h2/a/text()"")";21;4;21;3
+313;trans.code.description.313;"link2 = ""https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2334524.m570.l1313&_nkw=iphone+15&_sacat=0&_odkw=iphone&_osacat=0""
+stranka2 = requests.get(link2)";21;3;21;3
+314;trans.code.description.314;"tree2 = html.fromstring(stranka2.content)
+prices = []
+for item in tree2.xpath('//span[@class=""s-item__price""]'):
+    price_text = item.text_content()
+    price_match = re.search(r'\$\d+(?:,\d{3})*(?:\.\d{2})?', price_text)
+    if price_match:
+        price = float(price_match.group().replace('$', '').replace(',', ''))
+        prices.append(price)
+        print(prices)
+
+if prices:
+    average_price = sum(prices) / len(prices)
+    print(f""Average price of iPhone on Ebay: ${average_price:.2f}"")
+else:
+    print(""No prices found."")";21;5;21;3
+315;trans.code.description.315;"link3 = ""https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2334524.m570.l1313&_nkw=iphone+15&_sacat=0&_odkw=iphone&_osacat=0""
+stranka3 = requests.get(link3)
+tree3 = html.fromstring(stranka3.content)
+ceny3 = tree3.xpath('//div/span[@class=""s-item__price""]/text()')
+ceny3[:5";21;4;21;3
+316;trans.code.description.316;"ceny_nove = []
+for c in ceny3:
+    new_c = c.strip()
+    new_c = new_c.replace("","","""")
+    if len(new_c)>1:
+        ceny_nove.append(float(new_c[1:]))";21;3;21;3
+317;trans.code.description.317;"link = ""http://www.tu.ff.ukf.sk/kontakty""
+stranka = requests.get(link)
+sent = stranka.text";21;4;22;3
+318;trans.code.description.318;"[w for w in sent.split('""') if re.search(""^[a-zA-Z0-9+-_.]{1,64}@[a-zA-Z0-9-]{1,255}\.[a-zA-Z0-9-.]{2,}$"", w)]";20;5;22;3
+319;trans.code.description.319;nltk.download('punkt');1;1;22,23;3
+320;trans.code.description.320;"text = ""The cat is in the box. The cat likes the box. The box is over the cat.""";2;3;22;3
+321;trans.code.description.321;from nltk.tokenize import word_tokenize;1;1;22,23;3
+322;trans.code.description.322;array = word_tokenize(text);20;3;22;3
+323;trans.code.description.323;smalym = text.lower();20;3;22;3
+324;trans.code.description.324;word_tokenize(smalym);20;3;22;3
+325;trans.code.description.325;v = Counter(word_tokenize(smalym));20;5;22;3
+326;trans.code.description.326;v.most_common(5);20;5;22;3
+327;trans.code.description.327;"link = ""https://sacred-texts.com/cla/aesop/index.htm""
+stranka = requests.get(link)
+stranka.text";21;3;23;3
+328;trans.code.description.328;"nazvy = tree.xpath(""//body/a/text()"")";21;4;23;3
+329;trans.code.description.329;"all_titles = ''
+for title in nazvy:
+  all_titles += ' ' + title ";21;3;23;3
+330;trans.code.description.330;words = word_tokenize(all_titles);20;3;23;3
+331;trans.code.description.331;text_lower = [w.lower() for w in words];20;3;23;3
+332;trans.code.description.332;from nltk.probability import FreqDist;1;1;23;3
+333;trans.code.description.333;freq = FreqDist(text_lower);20;5;23;3
+334;trans.code.description.334;freq.most_common(10);20;5;23;3
+335;trans.code.description.335;"result_all = tree.xpath(""//a/@href""";21;4;23;3
+336;trans.code.description.336;"vsetko = """"
+for odkaz in result_all:
+    link = 'https://sacred-texts.com/cla/aesop/' + odkaz
+
+    my_content = requests.get(link)
+    result_all = tree.xpath(""//hr/p/text()"")
+    for title in result_all:
+        all_titles += '' + title
+        vsetko = vsetko + "" "" + result_all";21;4;23;3
+337;trans.code.description.337;r = requests.get('http://www.gutenberg.org/files/2701/2701-h/2701-h.htm');21;3;23;3
+338;trans.code.description.338;r.encoding = 'utf-8';21;3;23;3
+339;trans.code.description.339;html = r.text;21;3;23;3
+340;trans.code.description.340;print(html[:200]);21;3;23;3
+341;trans.code.description.341;from bs4 import BeautifulSoup;1;1;23;3
+342;trans.code.description.342;soup = BeautifulSoup(html, 'html.parser');21;4;23;3
+343;trans.code.description.343;text = soup.get_text();21;3;23;3
+344;trans.code.description.344;tokenizer = nltk.tokenize.RegexpTokenizer('\w+');20;4;23;3
+345;trans.code.description.345;tokens = tokenizer.tokenize(text);20;3;23;3
+346;trans.code.description.346;"words = []
+for word in tokens:
+    words.append(word.lower())";20;3;23;3
+347;trans.code.description.347;freq = FreqDist(words);20;5;23;3
+348;trans.code.description.348;nltk.download('stopwords');1;1;23;3
+349;trans.code.description.349;from nltk.corpus import stopwords;1;1;23;3
+350;trans.code.description.350;sw = stopwords.words('english');20;3;23;3
+351;trans.code.description.351;"words_ns = []
+for word in words:
+    if word not in sw: words_ns.append(word)";20;4;23;3
+352;trans.code.description.352;freqdist = nltk.FreqDist(words_ns);20;5;23;3
+353;trans.code.description.353;freqdist.plot(20, cumulative=False);20;5;23;3
