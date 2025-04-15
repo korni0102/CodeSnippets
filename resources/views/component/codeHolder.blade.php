@@ -1,7 +1,7 @@
 @use(App\Models\Snippet)
 @isset($snippet)
     <div class="d-flex justify-content-between align-items-start mb-3">
-        <p class="w-85 mb-0">{{ __(Snippet::TRANS_STRING_DESCRIPTION . $snippet->id) }}</p>
+        <p class="w-85 mb-0">{{ __($snippet->description) }}</p>
         <span class="badge bg-primary w-15 text-end">
             {{ __("trans." . Snippet::getCrispdm($snippet->crispdm)) }}
         </span>

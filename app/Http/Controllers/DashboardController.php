@@ -16,7 +16,13 @@ class DashboardController extends Controller
      */
     public function index(): View
     {
-        $snippets = Snippet::all()->groupBy('category_id')->sortKeys();
+        $snippets = Snippet::join('codes_has_snippets', 'snippets.id', '=', 'codes_has_snippets.snippet_id')
+            ->join('codes', 'codes.id', '=', 'codes_has_snippets.code_id')
+            ->where('codes.approved', true)
+            ->select('snippets.*')
+            ->get()
+            ->groupBy('category_id')
+            ->sortKeys();
 
         return view('home', compact('snippets'));
     }

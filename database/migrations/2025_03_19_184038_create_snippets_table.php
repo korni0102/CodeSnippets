@@ -20,6 +20,7 @@ return new class extends Migration {
                 ->constrained('row_categories')
                 ->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

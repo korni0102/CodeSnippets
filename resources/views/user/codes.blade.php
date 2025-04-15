@@ -24,34 +24,39 @@
         </a>
     @endif
 
-    @foreach($codes as $code)
-        <div class="accordion mb-5" id="code{{ $code->id }}">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
-                            data-bs-target="#{{ $code->id }}" aria-expanded="false"
-                            aria-controls="{{ $code->id }}">
-                        <span class="d-flex w-100">
-                            <span class="w-25">
-                                {{ __(Code::TRANS_STRING_NAME . $code->id) }}
-                                <span
-                                    class="badge ms-2 rounded-pill @if($code->approved) text-bg-success @else text-bg-danger @endif">@if($code->approved)
-                                        {{ __('trans.Approved') }}
-                                    @else
-                                        {{ __('trans.Not approved yet') }}
-                                    @endif
-                                </span>
+@foreach($codes as $code)
+    <div class="accordion mb-5" id="code{{ $code->id }}">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed d-flex justify-content-between align-items-center"
+                        type="button" data-bs-toggle="collapse"
+                        data-bs-target="#{{ $code->id }}" aria-expanded="false"
+                        aria-controls="{{ $code->id }}">
+
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start w-100">
+                        <div class="fw-semibold pe-2">
+                            {{ __($code->name) }}
+                        </div>
+                        <div class="mt-2 mt-md-0">
+                            <span class="badge rounded-pill
+                                         @if($code->approved) text-bg-success @else text-bg-danger @endif">
+                                @if($code->approved)
+                                    {{ __('trans.Approved') }}
+                                @else
+                                    {{ __('trans.Not approved yet') }}
+                                @endif
                             </span>
-                            <span class="text-start w-75">
-                                {{ __(Code::TRANS_STRING_DESCRIPTION . $code->id) }}
-                            </span>
-                        </span>
-                    </button>
-                </h2>
-                <div id="{{ $code->id }}" class="accordion-collapse collapse"
-                     data-bs-parent="#code{{ $code->id }}">
-                    <div class="accordion-body">
-                        <div class="d-inline-flex py-3">
+                        </div>
+                    </div>
+                </button>
+            </h2>
+
+            <div id="{{ $code->id }}" class="accordion-collapse collapse"
+                 data-bs-parent="#code{{ $code->id }}">
+                <div class="accordion-body">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-start py-2">
+                        <div class="d-inline-flex mb-2">
                             <a class="btn btn-success me-2" href="{{ route('user.code.edit', $code) }}"
                                title="{{ __("trans.Edit") }}">
                                 <i class="bi bi-pen"></i>
@@ -67,12 +72,16 @@
                                 <i class="bi bi-trash"></i>
                             </a>
                         </div>
-                        @foreach($code->snippets as $snippet)
-                            @include('component.codeHolder')
-                        @endforeach
                     </div>
+
+                    @foreach($code->snippets as $snippet)
+                        @include('component.codeHolder')
+                    @endforeach
+
                 </div>
             </div>
         </div>
-    @endforeach
+    </div>
+@endforeach
+
 @endsection

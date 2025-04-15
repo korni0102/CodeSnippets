@@ -81,12 +81,12 @@ class UserController extends Controller
 
         if ($request->has('snippets')) {
             foreach ($request->get('snippets') as $snippetId => $data) {
-                $snippet = Snippet::whereId($snippetId);
+                $snippet = Snippet::whereId($snippetId)->first();
 
                 $snippet->update([
                     "row"         => $data['row'],
                     'crispdm'     => $data['crispdm'],
-                    'category_id' => $data['category_id'],
+                    'category_id' => $data['category'],
                 ]);
 
                 $this->createOrUpdateTranslations($snippet, $data);
@@ -114,6 +114,12 @@ class UserController extends Controller
      */
     public function archiveCode(Code $code): RedirectResponse
     {
+        foreach ($code->snippets as $snippet) {
+            if ($snippet->codes->count() == 1) {
+                $snippet->delete();
+            }
+        }
+
         $code->delete();
 
         return redirect()->back()->with('success', __('trans.Code archived successfully'));
@@ -130,6 +136,11 @@ class UserController extends Controller
         // Restore the record
         if ($code) {
             $code->restore();
+
+            foreach ($code->snippets as $snippet) {
+                $snippet->restore();
+            }
+
             return redirect()->back()->with('success', __('trans.Code restored successfully'));
         }
 
@@ -143,6 +154,17 @@ class UserController extends Controller
     public function deleteCode(int $codeId)
     {
         $code = Code::withTrashed()->findOrFail($codeId);
+
+        $snippets = Snippet::withTrashed()
+            ->join('codes_has_snippets', 'snippets.id', '=', 'codes_has_snippets.snippet_id')
+            ->where('codes_has_snippets.code_id', $codeId)
+            ->get();
+
+        foreach ($snippets as $snippet) {
+            if ($snippet->codes->count() == 1) {
+                $snippet->forceDelete();
+            }
+        }
 
         if ($code) {
             $code->forceDelete();

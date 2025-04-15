@@ -10,15 +10,15 @@ class CodeSeeder extends Seeder
 {
     private const CODE_CODE_CATEGORIES = [
         //CODE_ID => CATEGORY_ID
-        1  => 1,
-        2  => 1,
-        3  => 1,
-        4  => 1,
-        5  => 1,
-        6  => 1,
-        7  => 1,
-        8  => 1,
-        9  => 1,
+        1 => 1,
+        2 => 1,
+        3 => 1,
+        4 => 1,
+        5 => 1,
+        6 => 1,
+        7 => 1,
+        8 => 1,
+        9 => 1,
         10 => 1,
         11 => 1,
         12 => 2,
@@ -34,6 +34,7 @@ class CodeSeeder extends Seeder
         22 => 3,
         23 => 3,
     ];
+
     /**
      * Run the database seeds.
      */

@@ -3,15 +3,13 @@
     <div class="accordion mb-5" id="code{{ $code->id }}">
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse"
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#{{ $code->id }}" aria-expanded="false"
                         aria-controls="{{ $code->id }}">
-                        <span class="d-flex w-100">
-                            <span class="w-25">
-                                {{ __('trans.code.used', ['id' => $code->id]) }}
-                            </span>
-
-                        </span>
+                    <div class="d-flex flex-column text-start w-100">
+                        <span class="fw-semibold">{{ __('trans.code.used', ['id' => $code->id]) }}</span>
+                        <span class="fst-italic text-muted">"{{ __('trans.code.name.' . $code->id) }}"</span>
+                    </div>
                 </button>
             </h2>
             <div id="{{ $code->id }}" class="accordion-collapse collapse"

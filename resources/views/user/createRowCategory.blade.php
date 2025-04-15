@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-1">
                         <a class="btn btn-info" style="font-size: 13px" href="#"
-                           onclick="getTranslation($(this))" data-local="en" role="button">
+                           onclick="getTranslation($(this))" data-local="en" role="button" data-target-id="category-sk">
                             <i class="bi bi-translate"></i>
                         </a>
                     </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-1">
                         <a class="btn btn-info" style="font-size: 13px" href="#"
-                           onclick="getTranslation($(this))" data-local="sk" role="button">
+                           onclick="getTranslation($(this))" data-local="sk" role="button" data-target-id="category-en">
                             <i class="bi bi-translate"></i>
                         </a>
                     </div>

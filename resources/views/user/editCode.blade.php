@@ -26,7 +26,7 @@
                     <div class="mb-3 col-11">
                         <label for="codeNameEN" class="form-label">{{ __("trans.Code name") }} EN</label>
                         <input type="text" class="form-control" id="codeNameEN" name="code[en][name]"
-                               value="{{ trans(Code::TRANS_STRING_NAME . $code->id, [], 'en') }}" required>
+                               value="{{ trans($code->name, [], 'en') }}" required>
                     </div>
                     <div class="col-1 d-flex justify-content-center align-items-end">
                         <a class="btn btn-info mb-3" style="font-size: 13px; height: 38px" href="javascript:void(0);"
@@ -39,7 +39,7 @@
                     <div class="mb-3 col-11">
                         <label for="codeNameSK" class="form-label">{{ __("trans.Code name") }} SK</label>
                         <input type="text" class="form-control" id="codeNameSK" name="code[sk][name]"
-                               value="{{ trans(Code::TRANS_STRING_NAME . $code->id, [], 'sk') }}" required>
+                               value="{{ trans($code->name, [], 'sk') }}" required>
                     </div>
                     <div class="col-1 d-flex justify-content-center align-items-end">
                         <a class="btn btn-info mb-3" style="font-size: 13px; height: 38px" href="javascript:void(0);"
@@ -54,7 +54,7 @@
                     <div class="mb-3 col-11">
                         <label for="descriptionEN" class="form-label">{{ __("trans.Code description") }} EN</label>
                         <textarea class="form-control" id="descriptionEN" rows="1"
-                                  name="code[en][description]">{{ trans(Code::TRANS_STRING_DESCRIPTION . $code->id, [], 'en') }}</textarea>
+                                  name="code[en][description]">{{ trans($code->name, [], 'en') }}</textarea>
                     </div>
                     <div class="col-1 d-flex justify-content-center align-items-end">
                         <a class="btn btn-info mb-3" style="font-size: 13px; height: 38px" href="javascript:void(0);"
@@ -68,7 +68,7 @@
                     <div class="mb-3 col-11">
                         <label for="descriptionSK" class="form-label">{{ __("trans.Code description") }} SK</label>
                         <textarea class="form-control" id="descriptionSK" rows="1"
-                                  name="code[sk][description]">{{ trans(Code::TRANS_STRING_DESCRIPTION . $code->id, [], 'sk') }}</textarea>
+                                  name="code[sk][description]">{{ trans($code->name, [], 'sk') }}</textarea>
                     </div>
                     <div class="col-1 d-flex justify-content-center align-items-end">
                         <a class="btn btn-info mb-3" style="font-size: 13px; height: 38px" href="javascript:void(0);"
@@ -101,8 +101,8 @@
                             <label for="snippetDescriptionEn{{ $snippet->id }}"
                                    class="form-label">{{ __("trans.Description") }} EN</label>
                             <input type="text" id="snippetDescriptionEn{{ $snippet->id }}"
-                                   name="snippets[{{ $snippet->id }}][description]" class="form-control"
-                                   value="{{ trans(Snippet::TRANS_STRING_DESCRIPTION . $snippet->id, [], 'en') }}" required>
+                                   name="snippets[{{ $snippet->id }}][en][description]" class="form-control"
+                                   value="{{ trans($snippet->description, [], 'en') }}" required>
                         </div>
                         <div class="col-1 d-flex justify-content-center align-items-end">
                             <a class="btn btn-info mb-3" style="font-size: 13px; height: 38px" href="javascript:void(0);"
@@ -116,8 +116,8 @@
                             <label for="snippetDescriptionSk{{ $snippet->id }}"
                                    class="form-label">{{ __("trans.Description") }} SK</label>
                             <input type="text" id="snippetDescriptionSk{{ $snippet->id }}"
-                                   name="snippets[{{ $snippet->id }}][description]" class="form-control"
-                                   value="{{ trans(Snippet::TRANS_STRING_DESCRIPTION . $snippet->id, [], 'sk') }}" required>
+                                   name="snippets[{{ $snippet->id }}][sk][description]" class="form-control"
+                                   value="{{ trans($snippet->description, [], 'sk') }}" required>
                         </div>
                         <div class="col-1 d-flex justify-content-center align-items-end">
                             <a class="btn btn-info mb-3" style="font-size: 13px; height: 38px" href="javascript:void(0);"
@@ -149,7 +149,7 @@
                         <label for="category{{ $snippet->id }}"
                                class="form-label">{{ __("trans.Row category") }}</label>
                         <select class="form-select" id="category{{ $snippet->id }}"
-                                name="snippets[{{ $snippet->id }}][category_id]">
+                                name="snippets[{{ $snippet->id }}][category]">
                             @foreach(RowCategory::getAllCategoriesForSelect() as $categoryId => $categoryName)
                                 <option value="{{ $categoryId }}" @selected($snippet->category_id == $categoryId)>
                                     {{ __(RowCategory::TRANS_STRING . $categoryId) }}
@@ -246,7 +246,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="category${lastRowIndex}" class="form-label">${"{{ __("trans.Row category") }}"}</label>
-                                <select class="form-select" id="category${lastRowIndex}" name="newSnippets[${lastRowIndex}][category_id]">
+                                <select class="form-select" id="category${lastRowIndex}" name="newSnippets[${lastRowIndex}][category]">
                                     @foreach(RowCategory::getAllCategoriesForSelect() as $categoryId => $categoryName)
                                         <option value="{{ $categoryId }}">{{ __(RowCategory::TRANS_STRING . $categoryId) }}</option>
                                     @endforeach
