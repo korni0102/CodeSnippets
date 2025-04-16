@@ -1,138 +1,101 @@
-# CodeSnippets – Laravel Application
+# 📘 About CodeSnippets
 
-**CodeSnippets** is a Laravel-based web application designed to manage, search, and organize Python code snippets. It categorizes snippets according to CRISP-DM phases and supports multilingual functionality (English and Slovak). The application offers role-based access control for guests, registered users, and administrators.
+**CodeSnippets** is a Laravel-based web application designed to help users efficiently manage, organize, and search Python Code Snippets for ML/NN/NLP projects. It was developed as part of a master's thesis to address the common problem of scattered and poorly organized reusable code in machine learning and natural language processing projects.
 
----
+The platform supports multilingual functionality (Slovak and English), categorizes Code Snippets according to the CRISP-DM methodology and Snippet categories, and distinguishes between user roles such as guests, registered users, and administrators.
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [System Requirements](#system-requirements)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Application](#running-the-application)
-- [Translation System](#translation-system)
-- [Development Tools](#development-tools)
-- [Testing](#testing)
+### 🔍 Key Use Cases:
+- Quickly reuse Code Snippet in data science projects.
+- Store and categorize Code Snippets by phase (e.g., Data Preparation, Modeling, Evaluation).
+- Share reusable solutions within a development team or classroom environment.
+- Support for teaching, learning, and development with clean, categorized code examples.
 
 ---
 
-## 🚀 Features
+# 🛠️ Instructions for Cloning and Installing the CodeSnippets Project
 
-- **Code Snippet Management**: Create, edit, and archive Python code snippets.
-- **Categorization**: Organize snippets based on CRISP-DM phases.
-- **Multilingual Support**: Automatic translation of snippets and metadata between English and Slovak.
-- **Role-Based Access Control**:
-    - *Guest*: View and search snippets.
-    - *Registered User*: Create and manage personal snippets.
-    - *Administrator*: Manage all snippets and approve user-submitted categories.
-- **Search and Filtering**: Full-text search and filtering by category and CRISP-DM phase.
-- **User-Friendly Interface**: Responsive design with intuitive navigation.
+This guide describes the process of cloning, configuring, and running the **CodeSnippets** application, developed as part of a master's thesis project. 
 
 ---
 
-## 🛠️ System Requirements
+## 🔧 Installation Steps
 
-Ensure the following tools are installed on your system:
-
-- PHP >= 8.1
-- Composer
-- Node.js and npm
-- MySQL
-
----
-
-## 📦 Installation
-
-1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/korni0102/CodeSnippets.git
-   cd CodeSnippets
-   ```
-
-2. **Install PHP dependencies**:
-
-   ```bash
-   composer install
-   ```
-
-
-3. **Copy `.env` file and generate application key**:
-
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
-
-4. **Configure environment variables**:
-
-   Update the `.env` file with your database credentials and other necessary configurations.
-
----
-
-## ⚙️ Configuration
-
-- **Database**: Set up your MySQL database and update the `.env` file accordingly.
-- **Queue**: The application uses the `sync` driver by default. You can change this in the `.env` file (`QUEUE_CONNECTION`).
-- **Sanctum**: Laravel Sanctum is used for API authentication.
-
----
-
-## ▶️ Running the Application
-
-1. **Run migrations**:
-
-   ```bash
-   php artisan migrate
-   ```
-
-2. **Seed the database**:
-
-   ```bash
-   php artisan db:seed
-   ```
-
-   This will:
-
-    - Create an admin user.
-    - Import code snippets from a structured CSV file using `SnippetsSeeder`.
-
-3. **Start the development server**:
-
-   ```bash
-   php artisan serve
-   ```
-
-   Access the application at `http://localhost:8000`.
-
----
-
-## 🌐 Translation System
-
-- **Automatic Translation**: Utilizes [open-google-translator](https://github.com/vidya-hub/open-google-translator) for translating snippets and metadata.
-- **Caching**: Translations are cached in JSON files to minimize API calls and improve performance.
-- **Fallback Mechanism**: If the translation API fails, the original text is displayed with a notification.
-
----
-
-## 🧰 Development Tools
-
-- **Laravel Framework**: Backend framework.
-- **Blade Templates**: Templating engine for views.
-- **Bootstrap 5**: Frontend styling.
-- **Select2**: Enhanced select boxes for filtering.
-- **Laravel Sanctum**: API authentication.
-- **PHPUnit**: Testing framework.
-
----
-
-## ✅ Testing
-
-Run the test suite using:
+### 1. Clone the Repository
 
 ```bash
-php artisan test
+git clone https://github.com/korni0102/CodeSnippets.git
+cd CodeSnippets
 ```
 
+---
 
+### 2. Install PHP Dependencies Using Composer
+
+```bash
+composer install
+```
+
+---
+
+### 3. Create Environment Configuration File and Generate App Key
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+---
+
+### 4. Configure Database Connection
+
+Edit the `.env` file and set the following values based on your local database setup:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3309
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=secret
+```
+
+---
+
+### 5. Start Docker Environment
+
+Make sure Docker Desktop is running. Then initialize the containers with:
+
+```bash
+docker-compose -f docker/docker-compose.yml up -d
+```
+
+---
+
+### 6. Connect PhpStorm to the Database
+
+To allow full integration with PhpStorm, configure the MySQL connection under:  
+**File > Data Sources and Drivers**
+![img.png](img.png)
+---
+
+### 7. Run Migrations and Seed the Database
+
+This command will create the required database tables and populate them with test data including an admin user and default snippets.
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+---
+
+### 8. Start the Local Development Server
+
+```bash
+php artisan serve
+```
+
+The application will now be accessible at:  
+👉 `http://127.0.0.1:8000/`
+
+---
