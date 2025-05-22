@@ -756,7 +756,7 @@ else:
 stranka3 = requests.get(link3)
 tree3 = html.fromstring(stranka3.content)
 ceny3 = tree3.xpath('//div/span[@class=""s-item__price""]/text()')
-ceny3[:5";21;4;21;3
+ceny3[:5]";21;4;21;3
 316;trans.snippet.description.316;"ceny_nove = []
 for c in ceny3:
     new_c = c.strip()
@@ -787,7 +787,7 @@ for title in nazvy:
 332;trans.snippet.description.332;from nltk.probability import FreqDist;1;1;23;3
 333;trans.snippet.description.333;freq = FreqDist(text_lower);20;5;23;3
 334;trans.snippet.description.334;freq.most_common(10);20;5;23;3
-335;trans.snippet.description.335;"result_all = tree.xpath(""//a/@href""";21;4;23;3
+335;trans.snippet.description.335;"result_all = tree.xpath(""//a/@href"")";21;4;23;3
 336;trans.snippet.description.336;"vsetko = """"
 for odkaz in result_all:
     link = 'https://sacred-texts.com/cla/aesop/' + odkaz

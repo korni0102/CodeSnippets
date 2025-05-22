@@ -70,7 +70,7 @@
                     search: $('#search').val()
                 },
                 success: function (data) {
-                    renderSnippets(data);
+                    $('#home-code-holder').html(data);
                     Prism.highlightAll();
                 }
             });

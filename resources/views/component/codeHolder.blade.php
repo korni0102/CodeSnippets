@@ -20,8 +20,7 @@
         >
             <i class="bi bi-clipboard"></i>
         </button>
-
-        @isset($isHomeBlade)
+        @if(isset($isHomeBlade) && $isHomeBlade)
             <button class="btn btn-sm btn-outline-light position-absolute bottom-0 m-2 copy-btn mb-4"
                     data-bs-toggle="modal" data-bs-target="#showCode"
                     onclick="fetchCode('{{ $snippet->id }}')"

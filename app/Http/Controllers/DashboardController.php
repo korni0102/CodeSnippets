@@ -24,7 +24,12 @@ class DashboardController extends Controller
             ->groupBy('category_id')
             ->sortKeys();
 
-        return view('home', compact('snippets'));
+        $html = view('component.snippetPrint', [
+            'snippets' => $snippets,
+            'isHomeBlade' => true
+        ])->render();
+
+        return view('home', compact('html'));
     }
 
     /**
@@ -73,22 +78,12 @@ class DashboardController extends Controller
 
         $snippets = $query->get()->groupBy('category_id')->sortBy('category_id');
 
-        //RESTRUCTURING THE DATA FOR EASIER AJAX HANDLING
-        $result = $snippets->map(function ($group, $categoryId) {
-            return [
-                'category_id'   => $categoryId,
-                'category_name' => __(RowCategory::TRANS_STRING . $categoryId),
-                'snippets'      => $group->map(function ($snippet) {
-                    return [
-                        'id'          => $snippet->id,
-                        'description' => __($snippet->description),
-                        'crispdm'     => Snippet::getCrispdm($snippet->crispdm),
-                        'row'         => $snippet->row
-                    ];
-                }),
-            ];
-        });
-        return response()->json($result);
+        $html = view('component.snippetPrint', [
+            'snippets' => $snippets,
+            'isHomeBlade' => true
+        ])->render();
+
+        return response()->json($html);
     }
 
     /**
